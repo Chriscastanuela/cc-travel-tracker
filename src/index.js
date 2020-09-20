@@ -1,10 +1,52 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
+// <-------------------------------------------->Class Imports
+import Traveler from './classes/Traveler';
 
-// An example of how you tell webpack to use a CSS (SCSS) file
+// <-------------------------------------------->CSS Imports
+// CSS or SCSS example:
+
 import './css/base.scss';
 
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png'
+// <-------------------------------------------->Images
+// image example --- also need to link to it in the index.html
 
-console.log('This is the JavaScript entry file - your code begins here.');
+// import './images/Beach.jpg'
+import './images/user.png';
+
+// <-------------------------------------------->QuerySelectors
+let greeting = document.querySelector('.Greeting');
+// let expenses = document.querySelector('.Expenses');
+let userFullName = document.querySelector('.User-Full-Name');
+
+// <-------------------------------------------->Class Declarations
+let traveler;
+
+// <-------------------------------------------->Event Listeners
+window.onload = () => {
+    createClasses();
+    getDataAndShowDom();
+};
+
+// <-------------------------------------------->Functions
+function getDataAndShowDom() {
+    Promise.all([
+        traveler.getPersonalInfo(),
+        traveler.getTripData()
+    ])
+    .then(fetches => {
+        console.log(fetches[0].firstName)
+        domInfo()
+    })
+}
+
+function createClasses() {
+    traveler = new Traveler(1);
+    console.log(traveler);
+}
+
+function domInfo() {
+    // greeting.insertAdjacentHTML("afterbegin", `Welcome back, ${traveler.firstName}!<br>`);
+    greeting.innerHTML = `Welcome back, ${traveler.firstName}!`;
+    // <p>Future Trip: ${traveler.futureTrips[0].date}</p>`
+    userFullName.innerHTML = `${traveler.fullName}`
+    console.log(traveler.futureTrips[0]);
+}

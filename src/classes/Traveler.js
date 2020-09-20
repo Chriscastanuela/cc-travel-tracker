@@ -1,6 +1,7 @@
 class Traveler {
     constructor(identifier) {
         this.identifier = identifier;
+        this.tripData;
         this.id;
         this.fullName;
         this.firstName;
@@ -11,41 +12,57 @@ class Traveler {
         this.pendingTrips;
         this.futureTrips;
     }
-    async getPersonalInfo() {
-        let res = await fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/travelers/travelers');
+
+    getPersonalInfo() {
+        return fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/travelers/travelers')
         // let res = await fetch('../mock-data/travelers.js');
-        let data = await res.json();
-        let userData = Object.values(data).find(index => {
-            return index.name == this.identifier || index.id == this.identifier
+        .then(data => {
+            console.log(data);
+            return data.json();
         })
-        this.id = userData.id;
-        this.fullName = userData.name;
-        this.firstName = userData.name.split(' ')[0];
-        this.lastName = userData.name.split(' ')[1];
-        this.travelerType = userData.travelerType;
+        .then(userData => {
+            let currentTraveler = userData.travelers.find(index => {
+                return this.identifier == index.id
+            })
+            this.id = currentTraveler.id;
+            this.fullName = currentTraveler.name;
+            this.firstName = currentTraveler.name.split(' ')[0];
+            this.lastName = currentTraveler.name.split(' ')[1];
+            this.travelerType = currentTraveler.travelerType;
+            console.log(this);
+            return this;
+        })
     }
 
-    async getTripData() {
+    getTripData() {
         var today = new Date();
         var todayWithoutTime = today.getFullYear()+'/'+(today.getMonth()+1)+'/'+today.getDate();
-        getPersonalInfo();
-        let res = fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/trips/trips');
+        this.getPersonalInfo();
+        return fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/trips/trips')
         // let res = await fetch('../mock-data/trips.js');
-        let data = await res.json();
-        let userTripData = Object.values(data).filter(index => {
-            return index.userID == this.id;
+        .then(data => {
+            return data.json()
         })
-        this.pastTrips = userTripData.filter(i => {
-            return i.date < todayWithoutTime;
-        })
-        this.currentTrips = userTripData.filter(i => {
-            return i.date == todayWithoutTime;
-        })
-        this.futureTrips = userTripData.filter(i => {
-            return i.date > todayWithoutTime;
-        })
-        this.pendingTrips = userTripData.filter(i => {
-            return i.status == 'pending';
+        .then(allTripData => {
+            console.log(allTripData);
+            let userTripData = allTripData['trips'].filter(index => {
+                return index.userID == this.id;
+            })
+            console.log(userTripData);
+            this.pastTrips = userTripData.filter(i => {
+                return i.date < todayWithoutTime;
+            })
+            this.currentTrips = userTripData.filter(i => {
+                return i.date == todayWithoutTime;
+            })
+            this.futureTrips = userTripData.filter(i => {
+                return i.date > todayWithoutTime;
+            })
+            this.pendingTrips = userTripData.filter(i => {
+                return i.status == 'pending';
+            })
+            console.log(this);
+            return this;
         })
     }
 }

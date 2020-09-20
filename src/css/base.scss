@@ -1,11 +1,126 @@
-/* This is an example of using Sass, otherwise plain CSS works too*/
-$primary-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
-;
+/* Variables*/
+$primary-background: rgb(255, 255, 255);
 
-body {
-  background: $primary-background;
+@mixin marginPadding {
+  margin:0px; 
+  padding:0px;
 }
 
-title {
-  font-family: cursive;
+@mixin sectionBorders {
+  border-style: solid;
+  border-left: none;
+  border-right: none;
+  border-width: 1px;
+}
+
+// .Beach {
+//   position: relative;
+// }
+
+// <-------------------------------------------->Traveler
+
+// <------------------------------> Wrapper
+
+.Traveler-Wrapper {
+  @include marginPadding;
+  min-width: 100%;
+  min-height: 770px;
+  display: grid;
+  grid-template-rows: .5fr 2fr .5fr;
+}
+
+// <------------------------------> Header
+.Traveler-Header {
+  @include sectionBorders;
+  display: inline-block;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  background-color: #f3f0f0;
+  justify-content: end;
+}
+
+.Company-Name {
+  margin-top: 15px;
+  margin-left: 30px;
+  font-family: 'Rock Salt', cursive;
+  font-size: xx-large;
+  margin-bottom: 0px;
+}
+
+.Icon-and-Name {
+  margin-left: 60px;
+  align-self: end;
+  grid-column: 6;
+  // margin-bottom: 10px;
+  margin-top: 5px;
+}
+
+.UserIcon {
+  margin-left: 33px;
+  border-radius: 50%;
+}
+
+.User-Full-Name {
+  margin-top: 3px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+// .Traveler-Banner {
+//   background: $primary-background;
+//   @include marginPadding;
+//   display: flex;
+// }
+
+
+// <------------------------------> Main
+
+.Traveler-Main {
+  @include sectionBorders;
+  display: grid;
+  grid-template-columns: .75fr 2fr;
+  background-color: #f3f0f0;
+}
+
+.Greeting{
+  font-family: 'Open Sans', sans-serif;
+}
+
+.Expenses{
+  font-family: 'Open Sans', sans-serif;
+}
+
+.Book-Trip {
+  margin: 10px;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 75px;
+  background-color: $primary-background;
+  box-shadow: 5px 10px 28px #888888;
+  height: 450px;
+}
+
+.BTHeader {
+  margin-top: 15px;
+  margin-left: 40px;
+  font-family: 'Rock Salt', cursive;
+}
+
+.Trips {
+  margin: 10px;
+  margin-top: 46px;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 100px;
+  background-color: $primary-background;
+  box-shadow: 5px 10px 28px #888888;
+}
+
+.Your-Trip-Header {
+  margin-top: 15px;
+  margin-left: 90px;
+  font-family: 'Rock Salt', cursive;
+}
+
+.Traveler-Footer {
+  background-color: #f2eede; 
 }
