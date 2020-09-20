@@ -16,6 +16,10 @@ import './images/user.png';
 let greeting = document.querySelector('.Greeting');
 let expenses = document.querySelector('.YTD-Expenses');
 let userFullName = document.querySelector('.User-Full-Name');
+let pastText = document.querySelector('#Past-Text');
+let presentText = document.querySelector('#Present-Text');
+let upcomingText = document.querySelector('#Upcoming-Text');
+let pendingText = document.querySelector('#Pending-Text');
 
 // <-------------------------------------------->Class Declarations
 let traveler;
@@ -44,8 +48,20 @@ function createClasses() {
 }
 
 function domInfo() {
-    greeting.innerHTML = `Welcome back, ${traveler.firstName}!`;
-    userFullName.innerHTML = `${traveler.fullName}`
-    expenses.innerHTML = `YTD Travel Expenses: `
     console.log(traveler.futureTrips[0]);
+    greeting.innerHTML = `Welcome back, ${traveler.firstName}!`;
+    userFullName.innerHTML = `${traveler.fullName}`;
+    expenses.innerHTML = `YTD Travel Expenses: `;
+    //
+    // pastText.innerHTML = `${traveler.pastTrips.join(',')}`
+    // presentText.innerHTML = `${traveler.currentTrips.join(', ')}`
+    // upcomingText.innerHTML = `${traveler.futureTrips.join(', ')}`
+    // pendingText.innerHTML = `${traveler.pendingTrips.join(', ')}`
 }
+
+// function filterThroughTripData(trips) {
+//     traveler.pastTrips.reduce((acc, i) => {
+        
+//         return acc;
+//     }, ``)
+// }
