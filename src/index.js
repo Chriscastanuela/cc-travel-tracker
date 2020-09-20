@@ -14,7 +14,7 @@ import './images/user.png';
 
 // <-------------------------------------------->QuerySelectors
 let greeting = document.querySelector('.Greeting');
-// let expenses = document.querySelector('.Expenses');
+let expenses = document.querySelector('.YTD-Expenses');
 let userFullName = document.querySelector('.User-Full-Name');
 
 // <-------------------------------------------->Class Declarations
@@ -33,8 +33,8 @@ function getDataAndShowDom() {
         traveler.getTripData()
     ])
     .then(fetches => {
-        console.log(fetches[0].firstName)
-        domInfo()
+        console.log(fetches[0].firstName);
+        domInfo();
     })
 }
 
@@ -44,9 +44,8 @@ function createClasses() {
 }
 
 function domInfo() {
-    // greeting.insertAdjacentHTML("afterbegin", `Welcome back, ${traveler.firstName}!<br>`);
     greeting.innerHTML = `Welcome back, ${traveler.firstName}!`;
-    // <p>Future Trip: ${traveler.futureTrips[0].date}</p>`
     userFullName.innerHTML = `${traveler.fullName}`
+    expenses.innerHTML = `YTD Travel Expenses: `
     console.log(traveler.futureTrips[0]);
 }

@@ -35,8 +35,9 @@ class Traveler {
     }
 
     getTripData() {
+        //.getTime()
         var today = new Date();
-        var todayWithoutTime = today.getFullYear()+'/'+(today.getMonth()+1)+'/'+today.getDate();
+        var todayWithoutTime = today.getFullYear()+'/'+`0${(today.getMonth()+1)}`+'/'+today.getDate();
         this.getPersonalInfo();
         return fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/trips/trips')
         // let res = await fetch('../mock-data/trips.js');
@@ -44,11 +45,12 @@ class Traveler {
             return data.json()
         })
         .then(allTripData => {
-            console.log(allTripData);
+            // console.log(allTripData);
+            console.log("Traveler -> getTripData -> todayWithoutTime", todayWithoutTime)
             let userTripData = allTripData['trips'].filter(index => {
                 return index.userID == this.id;
             })
-            console.log(userTripData);
+            console.log("userTripData", userTripData);
             this.pastTrips = userTripData.filter(i => {
                 return i.date < todayWithoutTime;
             })
@@ -61,7 +63,7 @@ class Traveler {
             this.pendingTrips = userTripData.filter(i => {
                 return i.status == 'pending';
             })
-            console.log(this);
+            console.log('this', this);
             return this;
         })
     }
