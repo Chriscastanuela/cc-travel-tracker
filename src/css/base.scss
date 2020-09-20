@@ -21,6 +21,8 @@ $primary-background: rgb(255, 255, 255);
   border-style: solid;
   border-width: 1px;
   box-shadow: 5px 10px 28px #888888;
+  display: grid;
+  grid-template-columns: .18fr 2fr;
 }
 
 @mixin TripsSectionDivHeaders {
@@ -81,13 +83,6 @@ $primary-background: rgb(255, 255, 255);
   font-family: 'Open Sans', sans-serif;
 }
 
-// .Traveler-Banner {
-//   background: $primary-background;
-//   @include marginPadding;
-//   display: flex;
-// }
-
-
 // <------------------------------> Main
 
 .Traveler-Main {
@@ -102,6 +97,7 @@ $primary-background: rgb(255, 255, 255);
 
 .Greeting{
   font-family: 'Open Sans', sans-serif;
+  margin-left: 15px;
 }
 
 .Expenses{
@@ -188,6 +184,12 @@ $primary-background: rgb(255, 255, 255);
 
 .Pending-Header {
   @include TripsSectionDivHeaders;
+}
+
+.Trip-Section-Div-Text {
+  font-family: 'Open Sans', sans-serif;
+  margin-left: 15px;
+  align-self: center;
 }
 
 // <--------------------------------------------> Footer
