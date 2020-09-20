@@ -89,6 +89,7 @@ $primary-background: rgb(255, 255, 255);
 
 .Expenses{
   font-family: 'Open Sans', sans-serif;
+  float: right;
 }
 
 .Book-Trip {
@@ -109,8 +110,14 @@ $primary-background: rgb(255, 255, 255);
 
 // <--------------------> Main-Right
 
+.Traveler-Main-Right {
+  display: inline-block;
+}
+
 .YTD-Expenses {
   font-family: 'Open Sans', sans-serif;
+  float: right;
+  margin-right: 110px;
 }
 
 .Trips {
