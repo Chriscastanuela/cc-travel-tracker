@@ -55,7 +55,7 @@ function createClasses() {
 }
 
 function domInfo() {
-    console.log(traveler.futureTrips[0]);
+    // console.log(traveler.futureTrips[0]);
     greeting.innerHTML = `Welcome back, ${traveler.firstName} the ${traveler.travelerType}!`;
     userFullName.innerHTML = `${traveler.fullName}`;
     expenses.innerHTML = `YTD Travel Expenses: `;
