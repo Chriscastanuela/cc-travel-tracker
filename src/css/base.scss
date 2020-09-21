@@ -26,6 +26,7 @@ $primary-background: rgb(255, 255, 255);
   border-style: solid;
   border-width: 1px;
   display: grid;
+  grid-template-rows: .5fr 2fr .5fr;
   height: 360px;
   box-shadow: 5px 10px 28px #888888;
 }
@@ -64,7 +65,6 @@ $primary-background: rgb(255, 255, 255);
   margin-left: 60px;
   align-self: end;
   grid-column: 6;
-  // margin-bottom: 10px;
   margin-top: 5px;
 }
 
@@ -151,10 +151,8 @@ $primary-background: rgb(255, 255, 255);
 
 .Past {
   @include TripsSectionDivs;
-  // grid-template-columns: .18fr 2fr;
-  // box-shadow: 5px 10px 28px #888888;
   margin-left: 12px;
-  grid-column: 1;
+  // grid-column: 1;
 }
 
 .Past-Header {
@@ -163,7 +161,6 @@ $primary-background: rgb(255, 255, 255);
 
 .Present {
   @include TripsSectionDivs;
-  // box-shadow: 5px 10px 28px #888888;
   margin-left: 10px;
   margin-top: 60px;
   margin-bottom: 10px;
@@ -175,7 +172,6 @@ $primary-background: rgb(255, 255, 255);
 
 .Upcoming {
   @include TripsSectionDivs;
-  // box-shadow: 5px 10px 28px #888888;
   grid-column: 3;
   margin-left: 10px;
   margin-top: 60px;
@@ -188,8 +184,6 @@ $primary-background: rgb(255, 255, 255);
 
 .Pending {
   @include TripsSectionDivs;
-  //
-  // box-shadow: 5px 10px 28px #888888;
   margin-left: 5px;
   margin-top: 60px;
   margin-bottom: 10px;
