@@ -58,6 +58,7 @@ function domInfo() {
     greeting.innerHTML = `Welcome back, ${traveler.firstName} the ${traveler.travelerType}!`;
     userFullName.innerHTML = `${traveler.fullName}`;
     expenses.innerHTML = `YTD Travel Expenses: `;
+
     traveler.pastTrips.forEach(element => {
         if (traveler.pastTrips.length > 0) {
             pastHeader.insertAdjacentHTML(`afterend`, `<div class="Trip-Div" id="Past-Div">
@@ -73,12 +74,12 @@ function domInfo() {
     });
 }
 
-// pastHeader
+
+
 // presentHeader
 // upcomingHeader
 // pendingHeader
 
-// this.pastTrips;
 // this.currentTrips;
 // this.pendingTrips;
 // this.futureTrips;
