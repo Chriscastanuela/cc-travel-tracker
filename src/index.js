@@ -49,7 +49,7 @@ function getDataAndShowDom() {
 }
 
 function createClasses() {
-    traveler = new Traveler(3);
+    traveler = new Traveler(7);
     console.log(traveler);
 }
 
@@ -72,14 +72,47 @@ function domInfo() {
           </div>`)
         }
     });
+    traveler.currentTrips.forEach(element => {
+        if (traveler.currentTrips.length > 0) {
+            presentHeader.insertAdjacentHTML(`afterend`, `<div class="Trip-Div" id="Present-Div">
+            <p class="Trip-Div-Text" id="Present-Text">
+            Destination: ${element.destinationID}<br>
+            Date: ${element.date}<br>
+            Status: ${element.status}<br>
+            Duration: ${element.duration} days<br>
+            Travelers on board: ${element.travelers}<br>
+            </p>
+          </div>`)
+        }
+    });
+    traveler.futureTrips.forEach(element => {
+        if (traveler.futureTrips.length > 0) {
+            upcomingHeader.insertAdjacentHTML(`afterend`, `<div class="Trip-Div" id="Upcoming-Div">
+            <p class="Trip-Div-Text" id="Upcoming-Text">
+            Destination: ${element.destinationID}<br>
+            Date: ${element.date}<br>
+            Status: ${element.status}<br>
+            Duration: ${element.duration} days<br>
+            Travelers on board: ${element.travelers}<br>
+            </p>
+          </div>`)
+        }
+    });
+    traveler.pendingTrips.forEach(element => {
+        if (traveler.pendingTrips.length > 0) {
+            pendingHeader.insertAdjacentHTML(`afterend`, `<div class="Trip-Div" id="Pending-Div">
+            <p class="Trip-Div-Text" id="Pending-Text">
+            Destination: ${element.destinationID}<br>
+            Date: ${element.date}<br>
+            Status: ${element.status}<br>
+            Duration: ${element.duration} days<br>
+            Travelers on board: ${element.travelers}<br>
+            </p>
+          </div>`)
+        }
+    });
 }
 
+// 
 
-
-// presentHeader
-// upcomingHeader
-// pendingHeader
-
-// this.currentTrips;
 // this.pendingTrips;
-// this.futureTrips;
