@@ -2,12 +2,67 @@
 <html lang="en-US">
   <head>
     <title>Webpack Starter Kit</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;1,300&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+    </style>
   </head>
-  <body>
-    <h1>Webpack Starter Kit</h1>
-
-    <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
-
-    <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
+  <!-- <img class="Beach" src="./images/Beach.jpg" alt="Moroccan Beach"> -->
+  <body class="Traveler-Wrapper">
+    <section class="Traveler-Header">
+      <h1 class="Company-Name">TravelCo.</h1>
+      <div class="Icon-and-Name">
+        <img class='UserIcon' width=50px height=50px src="./images/user.png" alt="User Icon">
+        <p class="User-Full-Name"></p>
+      </div>
+    </section>
+    <section class="Traveler-Main">
+      <div class="Traveler-Main-Left">
+        <p class="Greeting"></p>
+        <p class="Expenses"></p>
+        <div class="Book-Trip">
+          <h3 class="BTHeader">Book a Trip!</h3>
+        </div>
+      </div>
+      <div class="Traveler-Main-Right">
+        <p class="YTD-Expenses"></p>
+        <section class="TripsSection">
+          <div class="Past-And-Your-Trips">
+            <h3 class="Your-Trip-Header">Your Trips</h3>
+            <div class="Past">
+              <h3 class="Past-Header">Past </h3>
+              <div class="Trip-Div" id="Past-Div">
+                <p class="Trip-Div-Text" id="Past-Text"></p>
+              </div>
+              <div class="Trip-Div" id="Past-Div">
+                <p class="Trip-Div-Text" id="Past-Text"></p>
+              </div>
+              <div class="Trip-Div" id="Past-Div">
+                <p class="Trip-Div-Text" id="Past-Text"></p>
+              </div>
+            </div>
+          </div>
+            <div class="Present">
+              <h3 class="Present-Header">Present </h3>
+              <div class="Trip-Div" id="Present-Div">
+                <p class="Trip-Div-Text" id="Present-Text"></p>
+              </div>
+            </div>
+            <div class="Upcoming">
+              <h3 class="Upcoming-Header">Upcoming </h3>
+              <div class="Trip-Div" id="Upcoming-Div">
+                <p class="Trip-Div-Text" id="Upcoming-Text"></p>
+              </div>
+            </div>
+            <div class="Pending">
+              <h3 class="Pending-Header">Pending </h3>
+              <div class="Trip-Div" id="Pending-Div">
+                <p class="Trip-Div-Text" id="Pending-Text"></p>
+              </div>
+            </div>
+        </section>
+      </div>
+    </section>
+    <section class="Traveler-Footer"></section>
   </body>
 </html>

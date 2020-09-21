@@ -1,11 +1,237 @@
-/* This is an example of using Sass, otherwise plain CSS works too*/
-$primary-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
-;
+/* Variables*/
+$primary-background: rgb(255, 255, 255);
 
-body {
-  background: $primary-background;
+@mixin marginPadding {
+  margin:0px; 
+  padding:0px;
 }
 
-title {
-  font-family: cursive;
+@mixin sectionBorders {
+  border-style: solid;
+  border-left: none;
+  border-right: none;
+  border-width: 1px;
 }
+
+@mixin TripsSectionDivHeaders {
+  font-family: 'Kaushan Script', cursive;
+  // margin-left: 15px;
+  margin-left: 60px;
+}
+
+@mixin TripsSectionDivs {
+  background-color: #f2eede;
+  width: 225px;
+  border-radius: 75px;
+  border-style: solid;
+  border-width: 1px;
+  display: grid;
+  grid-template-rows: .2fr 2fr .5fr;
+  row-gap: 5px;
+  height: 360px;
+  box-shadow: 5px 10px 28px #888888;
+  overflow-y: scroll;
+  // padding-bottom: 5px;
+}
+
+// <-------------------------------------------->Traveler
+
+// <------------------------------> Wrapper
+
+.Traveler-Wrapper {
+  @include marginPadding;
+  min-width: 100%;
+  min-height: 770px;
+  display: grid;
+  grid-template-rows: .5fr 2fr .3fr;
+}
+
+// <------------------------------> Header
+.Traveler-Header {
+  @include sectionBorders;
+  display: inline-block;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  background-color: #f2eede;
+  justify-content: end;
+}
+
+.Company-Name {
+  margin-top: 37px;
+  margin-left: 35px;
+  font-family: 'Kaushan Script', cursive;
+  font-size: xx-large;
+  margin-bottom: 0px;
+}
+
+.Icon-and-Name {
+  margin-left: 60px;
+  align-self: end;
+  grid-column: 6;
+  margin-top: 5px;
+}
+
+.UserIcon {
+  margin-left: 33px;
+  border-radius: 50%;
+}
+
+.User-Full-Name {
+  margin-top: 3px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+// <------------------------------> Main
+
+.Traveler-Main {
+  @include sectionBorders;
+  border-top: none;
+  display: grid;
+  grid-template-columns: .75fr 2fr;
+  background-color: #f3f0f0;
+}
+
+// <--------------------> Main-Left
+
+.Greeting{
+  font-family: 'Open Sans', sans-serif;
+  margin-left: 15px;
+}
+
+.Expenses{
+  font-family: 'Open Sans', sans-serif;
+  float: right;
+}
+
+.Book-Trip {
+  margin: 10px;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 75px;
+  background-color: $primary-background;
+  box-shadow: 5px 10px 28px #888888;
+  height: 450px;
+}
+
+.BTHeader {
+  margin-top: 15px;
+  margin-left: 40px;
+  font-family: 'Kaushan Script', cursive;
+}
+
+// <--------------------> Main-Right
+
+.Traveler-Main-Right {
+  display: inline-block;
+}
+
+.YTD-Expenses {
+  font-family: 'Open Sans', sans-serif;
+  float: right;
+  margin-right: 110px;
+}
+
+.TripsSection {
+  margin: 10px;
+  margin-top: 47px;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 100px;
+  background-color: $primary-background;
+  box-shadow: 5px 10px 28px #888888;
+  height: 450px;
+  width: 990px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  row-gap: 10px;
+}
+
+.Your-Trip-Header {
+  margin-top: 15px;
+  margin-left: 90px;
+  font-family: 'Kaushan Script', cursive;
+}
+
+.Past {
+  @include TripsSectionDivs;
+  margin-left: 12px;
+  // grid-column: 1;
+}
+
+.Past-Header {
+  @include TripsSectionDivHeaders;
+}
+
+.Present {
+  @include TripsSectionDivs;
+  margin-left: 10px;
+  margin-top: 60px;
+  margin-bottom: 10px;
+}
+
+.Present-Header {
+  @include TripsSectionDivHeaders;
+}
+
+.Upcoming {
+  @include TripsSectionDivs;
+  grid-column: 3;
+  margin-left: 10px;
+  margin-top: 60px;
+  margin-bottom: 10px;
+}
+
+.Upcoming-Header {
+  @include TripsSectionDivHeaders;
+}
+
+.Pending {
+  @include TripsSectionDivs;
+  margin-left: 5px;
+  margin-top: 60px;
+  margin-bottom: 10px;
+}
+
+.Pending-Header {
+  @include TripsSectionDivHeaders;
+  
+}
+
+.Trip-Div {
+  font-family: 'Open Sans', sans-serif;
+  margin-left: 4px;
+  align-self: center;
+  //
+  background-color: $primary-background;
+  width: 215px;
+  border-radius: 75px;
+  border-style: solid;
+  border-width: 1px;
+  display: grid;
+  grid-template-rows: .5fr 2fr .5fr;
+  height: 260px;
+  box-shadow: 5px 10px 28px #888888;
+  overflow-y: scroll;
+  overflow-wrap: break-word;
+}
+
+.Trip-Div-Text {
+  grid-row: 2;
+  margin-left: 15px;
+}
+
+// <--------------------------------------------> Footer
+
+.Traveler-Footer {
+  background-color: #f2eede;
+  border-style: solid;
+  border-width: 1px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+/*
+overflow-y: scroll;
+overflow-wrap: break-word;
+*/
