@@ -53,10 +53,10 @@ function domInfo() {
     userFullName.innerHTML = `${traveler.fullName}`;
     expenses.innerHTML = `YTD Travel Expenses: `;
     //
-    // pastText.innerHTML = `${traveler.pastTrips.join(',')}`
-    // presentText.innerHTML = `${traveler.currentTrips.join(', ')}`
-    // upcomingText.innerHTML = `${traveler.futureTrips.join(', ')}`
-    // pendingText.innerHTML = `${traveler.pendingTrips.join(', ')}`
+    pastText.innerHTML = `${traveler.pastTrips.join(',')}`
+    presentText.innerHTML = `${traveler.currentTrips.join(', ')}`
+    upcomingText.innerHTML = `${traveler.futureTrips.join(', ')}`
+    pendingText.innerHTML = `${traveler.pendingTrips.join(', ')}`
 }
 
 // function filterThroughTripData(trips) {

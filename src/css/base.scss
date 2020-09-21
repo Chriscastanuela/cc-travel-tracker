@@ -26,9 +26,12 @@ $primary-background: rgb(255, 255, 255);
   border-style: solid;
   border-width: 1px;
   display: grid;
-  grid-template-rows: .5fr 2fr .5fr;
+  grid-template-rows: .2fr 2fr .5fr;
+  row-gap: 5px;
   height: 360px;
   box-shadow: 5px 10px 28px #888888;
+  overflow-y: scroll;
+  // padding-bottom: 5px;
 }
 
 // <-------------------------------------------->Traveler
@@ -194,10 +197,27 @@ $primary-background: rgb(255, 255, 255);
   
 }
 
-.Trip-Section-Div-Text {
+.Trip-Div {
   font-family: 'Open Sans', sans-serif;
-  margin-left: 15px;
+  margin-left: 4px;
   align-self: center;
+  //
+  background-color: $primary-background;
+  width: 215px;
+  border-radius: 75px;
+  border-style: solid;
+  border-width: 1px;
+  display: grid;
+  grid-template-rows: .5fr 2fr .5fr;
+  height: 260px;
+  box-shadow: 5px 10px 28px #888888;
+  overflow-y: scroll;
+  overflow-wrap: break-word;
+}
+
+.Trip-Div-Text {
+  grid-row: 2;
+  margin-left: 15px;
 }
 
 // <--------------------------------------------> Footer
