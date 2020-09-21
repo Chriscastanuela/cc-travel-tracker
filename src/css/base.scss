@@ -13,26 +13,22 @@ $primary-background: rgb(255, 255, 255);
   border-width: 1px;
 }
 
-@mixin TripsSectionDivs {
-  margin-left: 70px;
-  background-color: #f2eede;
-  width: 825px;
-  border-radius: 100px;
-  border-style: solid;
-  border-width: 1px;
-  box-shadow: 5px 10px 28px #888888;
-  display: grid;
-  grid-template-columns: .18fr 2fr;
-}
-
 @mixin TripsSectionDivHeaders {
   font-family: 'Kaushan Script', cursive;
-  margin-left: 15px;
+  // margin-left: 15px;
+  margin-left: 60px;
 }
 
-// .Beach {
-//   position: relative;
-// }
+@mixin TripsSectionDivs {
+  background-color: #f2eede;
+  width: 225px;
+  border-radius: 75px;
+  border-style: solid;
+  border-width: 1px;
+  display: grid;
+  height: 360px;
+  box-shadow: 5px 10px 28px #888888;
+}
 
 // <-------------------------------------------->Traveler
 
@@ -43,7 +39,7 @@ $primary-background: rgb(255, 255, 255);
   min-width: 100%;
   min-height: 770px;
   display: grid;
-  grid-template-rows: .5fr 2fr .5fr;
+  grid-template-rows: .5fr 2fr .3fr;
 }
 
 // <------------------------------> Header
@@ -52,7 +48,6 @@ $primary-background: rgb(255, 255, 255);
   display: inline-block;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-  // background-color: #f3f0f0;
   background-color: #f2eede;
   justify-content: end;
 }
@@ -144,7 +139,7 @@ $primary-background: rgb(255, 255, 255);
   height: 450px;
   width: 990px;
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   row-gap: 10px;
 }
 
@@ -156,6 +151,10 @@ $primary-background: rgb(255, 255, 255);
 
 .Past {
   @include TripsSectionDivs;
+  // grid-template-columns: .18fr 2fr;
+  // box-shadow: 5px 10px 28px #888888;
+  margin-left: 12px;
+  grid-column: 1;
 }
 
 .Past-Header {
@@ -164,6 +163,10 @@ $primary-background: rgb(255, 255, 255);
 
 .Present {
   @include TripsSectionDivs;
+  // box-shadow: 5px 10px 28px #888888;
+  margin-left: 10px;
+  margin-top: 60px;
+  margin-bottom: 10px;
 }
 
 .Present-Header {
@@ -172,6 +175,11 @@ $primary-background: rgb(255, 255, 255);
 
 .Upcoming {
   @include TripsSectionDivs;
+  // box-shadow: 5px 10px 28px #888888;
+  grid-column: 3;
+  margin-left: 10px;
+  margin-top: 60px;
+  margin-bottom: 10px;
 }
 
 .Upcoming-Header {
@@ -180,10 +188,16 @@ $primary-background: rgb(255, 255, 255);
 
 .Pending {
   @include TripsSectionDivs;
+  //
+  // box-shadow: 5px 10px 28px #888888;
+  margin-left: 5px;
+  margin-top: 60px;
+  margin-bottom: 10px;
 }
 
 .Pending-Header {
   @include TripsSectionDivHeaders;
+  
 }
 
 .Trip-Section-Div-Text {
@@ -196,4 +210,14 @@ $primary-background: rgb(255, 255, 255);
 
 .Traveler-Footer {
   background-color: #f2eede;
+  border-style: solid;
+  border-width: 1px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
 }
+
+/*
+overflow-y: scroll;
+overflow-wrap: break-word;
+*/
