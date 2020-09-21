@@ -40,7 +40,8 @@ window.onload = () => {
 function getDataAndShowDom() {
     Promise.all([
         traveler.getPersonalInfo(),
-        traveler.getTripData()
+        traveler.getTripData(),
+        // traveler.getDestinationData()
     ])
     .then(promiseDotAllIndex => {
         console.log(promiseDotAllIndex[0].firstName);
@@ -49,7 +50,7 @@ function getDataAndShowDom() {
 }
 
 function createClasses() {
-    traveler = new Traveler(9);
+    traveler = new Traveler(7);
     console.log(traveler);
 }
 
