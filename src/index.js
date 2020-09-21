@@ -16,6 +16,12 @@ import './images/user.png';
 let greeting = document.querySelector('.Greeting');
 let expenses = document.querySelector('.YTD-Expenses');
 let userFullName = document.querySelector('.User-Full-Name');
+
+let pastHeader = document.querySelector('.Past-Header');
+let presentHeader = document.querySelector('.Present-Header');
+let upcomingHeader = document.querySelector('.Upcoming-Header');
+let pendingHeader = document.querySelector('.Pending-Header');
+
 let pastText = document.querySelector('#Past-Text');
 let presentText = document.querySelector('#Present-Text');
 let upcomingText = document.querySelector('#Upcoming-Text');
@@ -43,25 +49,36 @@ function getDataAndShowDom() {
 }
 
 function createClasses() {
-    traveler = new Traveler(1);
+    traveler = new Traveler(3);
     console.log(traveler);
 }
 
 function domInfo() {
     console.log(traveler.futureTrips[0]);
-    greeting.innerHTML = `Welcome back, ${traveler.firstName}!`;
+    greeting.innerHTML = `Welcome back, ${traveler.firstName} the ${traveler.travelerType}!`;
     userFullName.innerHTML = `${traveler.fullName}`;
     expenses.innerHTML = `YTD Travel Expenses: `;
-    //
-    pastText.innerHTML = `${traveler.pastTrips.join(',')}`
-    presentText.innerHTML = `${traveler.currentTrips.join(', ')}`
-    upcomingText.innerHTML = `${traveler.futureTrips.join(', ')}`
-    pendingText.innerHTML = `${traveler.pendingTrips.join(', ')}`
+    traveler.pastTrips.forEach(element => {
+        if (traveler.pastTrips.length > 0) {
+            pastHeader.insertAdjacentHTML(`afterend`, `<div class="Trip-Div" id="Past-Div">
+            <p class="Trip-Div-Text" id="Past-Text">
+            Destination: ${element.destinationID}<br>
+            Date: ${element.date}<br>
+            Status: ${element.status}<br>
+            Duration: ${element.duration} days<br>
+            Travelers on board: ${element.travelers}<br>
+            </p>
+          </div>`)
+        }
+    });
 }
 
-// function filterThroughTripData(trips) {
-//     traveler.pastTrips.reduce((acc, i) => {
-        
-//         return acc;
-//     }, ``)
-// }
+// pastHeader
+// presentHeader
+// upcomingHeader
+// pendingHeader
+
+// this.pastTrips;
+// this.currentTrips;
+// this.pendingTrips;
+// this.futureTrips;
