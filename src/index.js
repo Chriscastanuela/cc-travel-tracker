@@ -18,6 +18,7 @@ import './images/user.png';
 let greeting = document.querySelector('.Greeting');
 let expenses = document.querySelector('.YTD-Expenses');
 let userFullName = document.querySelector('.User-Full-Name');
+let destinationField = document.querySelector('#Destination');
 
 let pastHeader = document.querySelector('.Past-Header');
 let presentHeader = document.querySelector('.Present-Header');
@@ -160,6 +161,15 @@ function domInfo() {
     let rawTravelExpenses =  past + current + future + pending;
     let totalTravelExpenses = (rawTravelExpenses * .10) + rawTravelExpenses;
     expenses.innerHTML = `YTD Travel Expenses: $${totalTravelExpenses.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}`;
+    return fetch(`https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/destinations/destinations`)
+            .then(data => {
+                return data.json()
+            })
+            .then(allDestinationData => {
+                allDestinationData.destinations.forEach(i => {
+                    destinationField.insertAdjacentHTML(`afterbegin`, `<option value=${i.destination}>${i.destination}</option>`)
+                })
+            })
 }
 
 function findSum(array) {
