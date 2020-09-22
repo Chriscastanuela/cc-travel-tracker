@@ -165,6 +165,12 @@ $primary-background: rgb(255, 255, 255);
 .Check-Details {
   @include bookTripDivs;
   cursor: pointer;
+  transition-duration: .6s;
+  max-width: 100px;
+}
+
+.Check-Details:hover {
+  background-color: #58d6ff;
 }
 
 @mixin readyStatusAndTripTotal {
@@ -186,6 +192,11 @@ $primary-background: rgb(255, 255, 255);
   cursor: pointer;
   font-family: 'Kaushan Script', cursive;
   max-width: 100px;
+  transition-duration: .6s;
+}
+
+.Book-Button:hover {
+  background-color: #58d6ff;
 }
 
 .BTHeader {
