@@ -184,6 +184,8 @@ $primary-background: rgb(255, 255, 255);
 .Book-Button {
   @include bookTripDivs;
   cursor: pointer;
+  font-family: 'Kaushan Script', cursive;
+  max-width: 100px;
 }
 
 .BTHeader {
