@@ -149,23 +149,23 @@ function domInfo() {
 */
 // this.pendingTrips;
 
-function bookTrip() {
-    let thePostContent = {
-        id: 1,
-        userID: 1, 
-        destinationID: 1, 
-        travelers: 1, 
-        date: `YYYY/MM/DD`,
-        duration: 1, 
-        status: 'pending',
-        suggestedActivities: [`swimming`, `eating`]
-    };
-    let thePost = {
-        method: `POST`,
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify()
-    }
-    fetch(`https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/trips/trips`, thePost)
-}
+// function bookTrip() {
+//     let thePostContent = {
+//         id: 1,
+//         userID: 1, 
+//         destinationID: 1, 
+//         travelers: 1, 
+//         date: `YYYY/MM/DD`,
+//         duration: 1, 
+//         status: 'pending',
+//         suggestedActivities: [`swimming`, `eating`]
+//     };
+//     let thePost = {
+//         method: `POST`,
+//         headers: {
+//             'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify()
+//     }
+//     fetch(`https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/trips/trips`, thePost)
+// }
