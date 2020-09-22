@@ -74,50 +74,18 @@ class Traveler {
                 return data.json()
             })
             .then(allDestinationData => {
-                // Object.values(allDestinationData[0]).forEach(i => {
                 allDestinationData.destinations.forEach(i => {
-                    // console.log("allDestinationData", Object.values(allDestinationData))
-                    // console.log(this.pastTrips)
                     if (this.pastTrips.length > 0) {
                         this.reformatTripData(`pastTrips`, i)
                     }
-                        console.log(this.pastTrips);
-                    // }
                     if (this.currentTrips.length > 0) {
-                        this.currentTrips.forEach(index => {
-                            if (index.destinationID == i.id) {
-                                index[`alt`] = i.alt;
-                                index[`destination`] = i.destination;
-                                index[`estimatedFlightCostPerPerson`] = i.estimatedFlightCostPerPerson;
-                                index[`estimatedLodgingCostPerDay`] = i.estimatedLodgingCostPerDay;
-                                index[`image`] = i.image;
-                                console.log(index);
-                            }
-                        })
+                        this.reformatTripData(`currentTrips`, i)
                     }
                     if (this.pendingTrips.length > 0) {
-                        this.pendingTrips.forEach(index => {
-                            if (index.destinationID == i.id) {
-                                index[`alt`] = i.alt;
-                                index[`destination`] = i.destination;
-                                index[`estimatedFlightCostPerPerson`] = i.estimatedFlightCostPerPerson;
-                                index[`estimatedLodgingCostPerDay`] = i.estimatedLodgingCostPerDay;
-                                index[`image`] = i.image;
-                                console.log(index);
-                            }
-                        })
+                        this.reformatTripData(`pendingTrips`, i)
                     }
                     if (this.futureTrips.length > 0) {
-                        this.futureTrips.forEach(index => {
-                            if (index.destinationID == i.id) {
-                                index[`alt`] = i.alt;
-                                index[`destination`] = i.destination;
-                                index[`estimatedFlightCostPerPerson`] = i.estimatedFlightCostPerPerson;
-                                index[`estimatedLodgingCostPerDay`] = i.estimatedLodgingCostPerDay;
-                                index[`image`] = i.image;
-                                console.log(index);
-                            }
-                        })
+                        this.reformatTripData(`futureTrips`, i)
                     }
                 })
                 return this;
