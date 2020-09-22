@@ -71,39 +71,10 @@ function domInfo() {
     let currentExpenses = [];
     let futureExpenses = [];
     let pendingExpenses = [];
-    if (traveler.pastTrips.length == 0) {
-        pastHeader.insertAdjacentHTML(`afterend`, emptyDiv());
-    } else {
-        traveler.pastTrips.forEach(element => {
-            pastExpenses.push(calculateTripCost(element));
-            console.log("pastExpenses", pastExpenses);
-            pastHeader.insertAdjacentHTML(`afterend`, newDiv(element))
-        });
-    }
-    if (traveler.currentTrips.length == 0) {
-        presentHeader.insertAdjacentHTML(`afterend`, emptyDiv())
-    } else {
-        traveler.currentTrips.forEach(element => {
-            currentExpenses.push(calculateTripCost(element));
-            presentHeader.insertAdjacentHTML(`afterend`, newDiv(element))
-        });
-    }
-    if (traveler.futureTrips.length == 0) {
-        upcomingHeader.insertAdjacentHTML(`afterend`, emptyDiv());
-    } else {
-        traveler.futureTrips.forEach(element => {
-            futureExpenses.push(calculateTripCost(element));
-            upcomingHeader.insertAdjacentHTML(`afterend`, newDiv(element))
-        });
-    }
-    if (traveler.pendingTrips.length == 0) {
-        pendingHeader.insertAdjacentHTML(`afterend`, emptyDiv())
-    } else {
-        traveler.pendingTrips.forEach(element => {
-            pendingExpenses.push(calculateTripCost(element));
-            pendingHeader.insertAdjacentHTML(`afterend`, newDiv(element))
-        });
-    }
+    analyzeTripAmounts(pastHeader, `pastTrips`, pastExpenses);
+    analyzeTripAmounts(presentHeader, `currentTrips`, currentExpenses);
+    analyzeTripAmounts(upcomingHeader, `futureTrips`, futureExpenses);
+    analyzeTripAmounts(pendingHeader, `pendingTrips`, pendingExpenses);
     let past = findSum(pastExpenses);
     let current = findSum(currentExpenses);
     let future = findSum(futureExpenses);
@@ -180,22 +151,30 @@ function getTripTotal(durationValue, destinationValue, travelersValue) {
     return totalCost;
 }
 
+
+function analyzeTripAmounts(header, trips, expenses) {
+    if (traveler[trips].length == 0) {
+        header.insertAdjacentHTML(`afterend`, emptyDiv());
+    } else {
+        traveler[trips].forEach(element => {
+            expenses.push(calculateTripCost(element));
+            header.insertAdjacentHTML(`afterend`, newDiv(element))
+        });
+    }
+}
+
+function emptyDiv() {
+    return `<div class="Trip-Div" id="Past-Div">
+    <p class="Trip-Div-Text" id="Past-Text">You don't have any trips in this section</p>
+    </div>`
+}
+
 function calculateTripCost(element) {
     let flightCost = element.estimatedFlightCostPerPerson * element.travelers;
     let lodgingCost = element.duration * element.estimatedLodgingCostPerDay;
     let totalCost = flightCost + lodgingCost;
     return totalCost;
 }
-
-// let newDiv = `<div class="Trip-Div">
-// <p class="Trip-Div-Text">
-// Destination: element.destination<br>
-// Date: ${element.date}<br>
-// Status: ${element.status}<br>
-// Duration: ${element.duration} days<br>
-// Travelers on board: ${element.travelers}<br>
-// </p>
-// </div>`
 
 function newDiv(element) {
     return `<div class="Trip-Div">
@@ -206,12 +185,6 @@ function newDiv(element) {
     Duration: ${element.duration} days<br>
     Travelers on board: ${element.travelers}<br>
     </p>
-    </div>`
-}
-
-function emptyDiv() {
-    return `<div class="Trip-Div" id="Past-Div">
-    <p class="Trip-Div-Text" id="Past-Text">You don't have any trips in this section</p>
     </div>`
 }
 
