@@ -71,6 +71,8 @@ $primary-background: rgb(255, 255, 255);
   border-width: 1px;
   background-color: #f2eede;
   font-family: 'Open Sans', sans-serif;
+  width: 150px;
+  // width: 200px;
 }
     // <-------------------------------------------->Traveler
 
@@ -146,8 +148,6 @@ $primary-background: rgb(255, 255, 255);
 
 #Date {
   @include bookTripDivs;
-  width: 150px;
-  // width: 200px;
 }
 
 #Duration {
@@ -160,6 +160,11 @@ $primary-background: rgb(255, 255, 255);
 
 #Destination {
   @include bookTripDivs;
+}
+
+.Check-Details {
+  @include bookTripDivs;
+  cursor: pointer;
 }
 
 .BTHeader {
