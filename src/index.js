@@ -28,6 +28,10 @@ let readyStatus = document.querySelector(`.Ready-Status`);
 let tripTotal = document.querySelector(`.Trip-Total`);
 let bookButton = document.querySelector(`.Book-Button`);
 
+let pastSection = document.querySelector('.Past');
+let presentSection = document.querySelector('.Present');
+let upcomingSection = document.querySelector('.Upcoming');
+let pendingSection = document.querySelector('.Pending');
 
 let pastHeader = document.querySelector('.Past-Header');
 let presentHeader = document.querySelector('.Present-Header');
@@ -44,17 +48,15 @@ window.onload = () => {
 };
 
 checkDetails.addEventListener('click', checkDetailsFunction);
+bookButton.addEventListener('click', bookTrip);
 
 // <-------------------------------------------->Functions
 function getDataAndShowDom() {
-    // console.log(traveler.getTripData());
     Promise.all([
         traveler.getPersonalInfo(),
         traveler.getTripData(),
-        // traveler.getDestinationData()
     ])
     .then(promiseDotAllIndex => {
-        console.log(promiseDotAllIndex[1]);
         domInfo();
     })
 }
@@ -71,6 +73,10 @@ function domInfo() {
     let currentExpenses = [];
     let futureExpenses = [];
     let pendingExpenses = [];
+    // pastHeader
+    // presentHeader
+    // upcomingHeader
+    // pendingHeader
     analyzeTripAmounts(pastHeader, `pastTrips`, pastExpenses);
     analyzeTripAmounts(presentHeader, `currentTrips`, currentExpenses);
     analyzeTripAmounts(upcomingHeader, `futureTrips`, futureExpenses);
@@ -88,7 +94,7 @@ function domInfo() {
         })
         .then(allDestinationData => {
             allDestinationData.destinations.forEach(i => {
-                destinationField.insertAdjacentHTML(`afterbegin`, `<option value=${i.destination}>${i.destination}</option>`)
+                destinationField.insertAdjacentHTML(`afterbegin`, `<option value=${i.id}>${i.destination}</option>`)
             })
         })
 }
@@ -100,7 +106,7 @@ function checkDetailsFunction() {
     if (dateField.value != '' && duration != '' && dest != '' && travelers != '') {
         bookButton.hidden = false;
         readyStatus.innerHTML = 'You are ready to book';
-        tripTotal.innerHTML = `Total for this trip: ${getTripTotal(durationField.value, dest, travelersField.value)}`
+        getTripTotal(duration, dest, travelers);
     };
     if (dateField.value == '' || durationField.value == '' || destinationField.value == '' || travelersField.value == '') {
         readyStatus.innerHTML = 'We need more details'
@@ -116,10 +122,7 @@ function findSum(array) {
 }
 
 function getTripTotal(durationValue, destinationValue, travelersValue) {
-    let totalCost;
-    // Promise.all([
-    //     //
-    // ])
+    // let totalCost;
     fetch(`https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/destinations/destinations`)
     .then(data => {
         return data.json()
@@ -127,7 +130,7 @@ function getTripTotal(durationValue, destinationValue, travelersValue) {
     .then(allDestinationData => {
         let destination;
         allDestinationData.destinations.forEach(a => {
-            if (a.destination.includes(destinationValue.slice(0, -1))) {
+            if (a.id == destinationValue) {
                 destination = a;
             } else {
                 return false;
@@ -143,12 +146,57 @@ function getTripTotal(durationValue, destinationValue, travelersValue) {
             console.log("getTripTotal -> costPerDay", costPerDay);
         let rawTotalCost = flightCost + costPerDay;
             console.log("getTripTotal -> rawTotalCost", rawTotalCost);
-        totalCost = rawTotalCost + (rawTotalCost * .10);
+        let totalCost = rawTotalCost + (rawTotalCost * .10);
             console.log("getTripTotal -> totalCost", totalCost);
-        return totalCost;
+        console.log("getTripTotal -> totalCost", totalCost)
+        tripTotal.innerHTML = `Total for this trip: $${totalCost.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}`
     })
-    console.log("getTripTotal -> totalCost", totalCost);
-    return totalCost;
+}
+
+function fixDateFormat(date) {
+    let year = date.slice(0, 4)
+    let month = date.slice(5, 7);
+    let day = date.slice(8, 10);
+    let newDate = year + '/' + month + '/' + day;
+    return newDate;
+}
+
+function bookTrip() {
+    let dest = parseInt(destinationField.value);
+    let duration = parseInt(durationField.value);
+    let travelers = parseInt(travelersField.value);
+    let theDate = fixDateFormat(dateField.value);
+    if (dateField.value != '' && duration != '' && dest != '' && travelers != '') {
+        getTripTotal(duration, dest, travelers);
+        let thePostContent = {
+            id: Date.now(),
+            userID: traveler.id,
+            destinationID: dest,
+            travelers: travelers,
+            date: theDate,
+            duration: duration,
+            status: 'pending',
+            suggestedActivities: []
+        };
+        console.log("bookTrip -> thePostContent", thePostContent);
+        let thePost = {
+            method: `POST`,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(thePostContent)
+        }
+        fetch(`https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/trips/trips`, thePost)
+        .then(response => {
+            getDataAndShowDom()
+        }
+        );
+    };
+    if (dateField.value == '' || durationField.value == '' || destinationField.value == '' || travelersField.value == '') {
+        bookButton.hidden = true;
+        console.log("Hello");
+        readyStatus.innerHTML = 'We need more details'
+    }
 }
 
 
@@ -190,43 +238,9 @@ function newDiv(element) {
 
 // ----------------------------------------------------------------------------------
 
-// let dateField = document.querySelector('#Date');
-// let durationField = document.querySelector('#Duration');
-// let destinationField = document.querySelector('#Destination');
-// let travelersField = document.querySelector('#Num-Of-Travelers');
-// let checkDetails = document.querySelector('.Check-Details');
-// let readyStatus = document.querySelector(`.Ready-Status`);
-// let tripTotal = document.querySelector(`.Trip-Total`);
+// let pastSection = document.querySelector('.Past');
+// let presentSection = document.querySelector('.Present');
+// let upcomingSection = document.querySelector('.Upcoming');
+// let pendingSection = document.querySelector('.Pending');
 
 // ----------------------------------------------------------------------------------
-
-
-// 1 - get value of inputs
-// 2 - create `thePostContent` object;
-// 3 - post
-// 4 - .then(
-//     invoke methods to get data again
-// ).then(
-//     domInfo()
-// )
-
-// function bookTrip() {
-//     let thePostContent = {
-//         id: 1,
-//         userID: 1, 
-//         destinationID: 1, 
-//         travelers: 1, 
-//         date: `YYYY/MM/DD`,
-//         duration: 1, 
-//         status: 'pending',
-//         suggestedActivities: [`swimming`, `eating`]
-//     };
-//     let thePost = {
-//         method: `POST`,
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify()
-//     }
-//     fetch(`https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/trips/trips`, thePost)
-// }
