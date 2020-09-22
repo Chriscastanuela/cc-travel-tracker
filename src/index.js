@@ -87,7 +87,7 @@ function domInfo() {
         traveler.currentTrips.forEach(element => {
             presentHeader.insertAdjacentHTML(`afterend`, `<div class="Trip-Div" id="Present-Div">
             <p class="Trip-Div-Text" id="Present-Text">
-            Destination: ${element.destinationID}<br>
+            Destination: ${element.destination}<br>
             Date: ${element.date}<br>
             Status: ${element.status}<br>
             Duration: ${element.duration} days<br>
@@ -105,7 +105,7 @@ function domInfo() {
         traveler.futureTrips.forEach(element => {
             upcomingHeader.insertAdjacentHTML(`afterend`, `<div class="Trip-Div" id="Upcoming-Div">
             <p class="Trip-Div-Text" id="Upcoming-Text">
-            Destination: ${element.destinationID}<br>
+            Destination: ${element.destination}<br>
             Date: ${element.date}<br>
             Status: ${element.status}<br>
             Duration: ${element.duration} days<br>
@@ -123,7 +123,7 @@ function domInfo() {
         traveler.pendingTrips.forEach(element => {
             pendingHeader.insertAdjacentHTML(`afterend`, `<div class="Trip-Div" id="Pending-Div">
             <p class="Trip-Div-Text" id="Pending-Text">
-            Destination: ${element.destinationID}<br>
+            Destination: ${element.destination}<br>
             Date: ${element.date}<br>
             Status: ${element.status}<br>
             Duration: ${element.duration} days<br>
@@ -149,17 +149,23 @@ function domInfo() {
 */
 // this.pendingTrips;
 
-// function bookTrip() {
-//     let thePostContent = {
-//         id: <number>, 
-//         userID: <number>, 
-//         destinationID: <number>, travelers: <number>, date: <string 'YYYY/MM/DD'>, duration: <number>, status: <string 'approved' or 'pending'>, suggestedActivities: <array of strings>}
-//     let thePost = {
-//         method: `POST`,
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify()
-//     }
-//     fetch(`https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/trips/trips`, thePost)
-// }
+function bookTrip() {
+    let thePostContent = {
+        id: 1,
+        userID: 1, 
+        destinationID: 1, 
+        travelers: 1, 
+        date: `YYYY/MM/DD`,
+        duration: 1, 
+        status: 'pending',
+        suggestedActivities: [`swimming`, `eating`]
+    };
+    let thePost = {
+        method: `POST`,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify()
+    }
+    fetch(`https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/trips/trips`, thePost)
+}
