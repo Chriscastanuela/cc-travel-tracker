@@ -24,11 +24,6 @@ let presentHeader = document.querySelector('.Present-Header');
 let upcomingHeader = document.querySelector('.Upcoming-Header');
 let pendingHeader = document.querySelector('.Pending-Header');
 
-// let pastText = document.querySelector('#Past-Text');
-// let presentText = document.querySelector('#Present-Text');
-// let upcomingText = document.querySelector('#Upcoming-Text');
-// let pendingText = document.querySelector('#Pending-Text');
-
 // <-------------------------------------------->Class Declarations
 let traveler;
 
@@ -61,7 +56,12 @@ function domInfo() {
     // console.log(traveler.futureTrips[0]);
     greeting.innerHTML = `Welcome back, ${traveler.firstName} the ${traveler.travelerType}!`;
     userFullName.innerHTML = `${traveler.fullName}`;
-    expenses.innerHTML = `YTD Travel Expenses: `;
+    //
+    let pastExpenses = [];
+    let currentExpenses = [];
+    let futureExpenses = [];
+    let pendingExpenses = [];
+    //
     if (traveler.pastTrips.length == 0) {
         pastHeader.insertAdjacentHTML(`afterend`, `<div class="Trip-Div" id="Past-Div">
         <p class="Trip-Div-Text" id="Past-Text">
@@ -69,6 +69,13 @@ function domInfo() {
       </div>`)
     } else {
         traveler.pastTrips.forEach(element => {
+            let flightCost = element.estimatedFlightCostPerPerson * element.travelers;
+            console.log("flightCost", flightCost);
+            let lodgingCost = element.duration * element.estimatedLodgingCostPerDay;
+            console.log("lodgingCost", lodgingCost);
+            let totalCost = flightCost + lodgingCost;
+            pastExpenses.push(totalCost);
+            console.log("pastExpenses", pastExpenses);
             pastHeader.insertAdjacentHTML(`afterend`, `<div class="Trip-Div" id="Past-Div">
             <p class="Trip-Div-Text" id="Past-Text">
             Destination: ${element.destination}<br>
@@ -87,6 +94,10 @@ function domInfo() {
       </div>`)
     } else {
         traveler.currentTrips.forEach(element => {
+            let flightCost = element.estimatedFlightCostPerPerson * element.travelers;
+            let lodgingCost = element.duration * element.estimatedLodgingCostPerDay;
+            let totalCost = flightCost + lodgingCost;
+            currentExpenses.push(totalCost);
             presentHeader.insertAdjacentHTML(`afterend`, `<div class="Trip-Div" id="Present-Div">
             <p class="Trip-Div-Text" id="Present-Text">
             Destination: ${element.destination}<br>
@@ -105,6 +116,10 @@ function domInfo() {
       </div>`)
     } else {
         traveler.futureTrips.forEach(element => {
+            let flightCost = element.estimatedFlightCostPerPerson * element.travelers;
+            let lodgingCost = element.duration * element.estimatedLodgingCostPerDay;
+            let totalCost = flightCost + lodgingCost;
+            futureExpenses.push(totalCost);
             upcomingHeader.insertAdjacentHTML(`afterend`, `<div class="Trip-Div" id="Upcoming-Div">
             <p class="Trip-Div-Text" id="Upcoming-Text">
             Destination: ${element.destination}<br>
@@ -123,6 +138,10 @@ function domInfo() {
       </div>`)
     } else {
         traveler.pendingTrips.forEach(element => {
+            let flightCost = element.estimatedFlightCostPerPerson * element.travelers;
+            let lodgingCost = element.duration * element.estimatedLodgingCostPerDay;
+            let totalCost = flightCost + lodgingCost;
+            pendingExpenses.push(totalCost);
             pendingHeader.insertAdjacentHTML(`afterend`, `<div class="Trip-Div" id="Pending-Div">
             <p class="Trip-Div-Text" id="Pending-Text">
             Destination: ${element.destination}<br>
@@ -134,6 +153,21 @@ function domInfo() {
             </div>`)
         });
     }
+    let past = findSum(pastExpenses);
+    let current = findSum(currentExpenses);
+    let future = findSum(futureExpenses);
+    let pending = findSum(pendingExpenses);
+    let rawTravelExpenses =  past + current + future + pending;
+    let totalTravelExpenses = (rawTravelExpenses * .10) + rawTravelExpenses;
+    expenses.innerHTML = `YTD Travel Expenses: ${totalTravelExpenses}`;
+}
+
+function findSum(array) {
+    let theReduce = array.reduce((acc, i) => {
+        acc += i
+        return acc;
+    }, 0)
+    return theReduce;
 }
 
 // 
@@ -149,7 +183,6 @@ function domInfo() {
 )
 
 */
-// this.pendingTrips;
 
 // function bookTrip() {
 //     let thePostContent = {
