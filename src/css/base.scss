@@ -158,6 +158,10 @@ $primary-background: rgb(255, 255, 255);
   @include bookTripDivs;
 }
 
+#Destination {
+  @include bookTripDivs;
+}
+
 .BTHeader {
   margin-top: 15px;
   margin-left: 40px;
