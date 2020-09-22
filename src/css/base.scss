@@ -56,6 +56,11 @@ $primary-background: rgb(255, 255, 255);
   row-gap: 10px;
 }
 
+@mixin travelerMain {
+  border-top: none;
+  display: grid;
+  background-color: #f3f0f0;
+}
     // <-------------------------------------------->Traveler
 
 // <------------------------------> Wrapper
@@ -107,10 +112,8 @@ $primary-background: rgb(255, 255, 255);
 
 .Traveler-Main {
   @include sectionBorders;
-  border-top: none;
-  display: grid;
   grid-template-columns: 1fr 1fr;
-  background-color: #f3f0f0;
+  @include travelerMain;
 }
 
 // <--------------------> Main-Left
@@ -290,10 +293,8 @@ $primary-background: rgb(255, 255, 255);
   
   .Traveler-Main {
     @include sectionBorders;
-    border-top: none;
-    display: grid;
     grid-template-columns: .75fr 2fr;
-    background-color: #f3f0f0;
+    @include travelerMain;
   }
 
   .TripsSection {
@@ -306,10 +307,8 @@ $primary-background: rgb(255, 255, 255);
 
   .Traveler-Main {
     @include sectionBorders;
-    border-top: none;
-    display: grid;
     grid-template-columns: .75fr 2fr;
-    background-color: #f3f0f0;
+    @include travelerMain;
   }
 
   .Traveler-Main-Right {

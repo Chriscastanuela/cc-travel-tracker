@@ -5,6 +5,8 @@ import Traveler from './classes/Traveler';
 // CSS or SCSS example:
 
 import './css/base.scss';
+// import './css/footer.scss';
+// import './css/queries.scss';
 
 // <-------------------------------------------->Images
 // image example --- also need to link to it in the index.html
