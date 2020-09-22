@@ -5,6 +5,3 @@ class TravelAgent {
 }
 
 export default TravelAgent;
-// if (typeof module !== "undefined") {
-//     module.exports = TravelAgent;
-// };

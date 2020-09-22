@@ -192,10 +192,13 @@ function domInfo() {
 // let tripTotal = document.querySelector(`.Trip-Total`);
 
 function checkDetailsFunction() {
-    if (dateField.value != '' && durationField.value != '' && destinationField.value != '' && travelersField.value != '') {
-        readyStatus.innerHTML = 'You are ready to book';
-        tripTotal.innerHTML = `Total for this trip: ${getTripTotal()}`
+    let dest = destinationField.value;
+    let duration = durationField.value;
+    let travelers = travelersField.value;
+    if (dateField.value != '' && duration != '' && dest != '' && travelers != '') {
         bookButton.hidden = false;
+        readyStatus.innerHTML = 'You are ready to book';
+        tripTotal.innerHTML = `Total for this trip: ${getTripTotal(durationField.value, dest, travelersField.value)}`
     };
     if (dateField.value == '' || durationField.value == '' || destinationField.value == '' || travelersField.value == '') {
         readyStatus.innerHTML = 'We need more details'
@@ -210,36 +213,50 @@ function findSum(array) {
     return theReduce;
 }
 
-function getTripTotal() {
-    /*
-    duration
-    destination
-    travelers
-    */
-    return fetch(`https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/destinations/destinations`)
-        .then(data => {
-            return data.json()
-        })
-        .then(allDestinationData => {
-            allDestinationData.destinations.forEach(i => {
-                destinationField.insertAdjacentHTML(`afterbegin`, `<option value=${i.destination}>${i.destination}</option>`)
-            })
-        })
+function getTripTotal(durationValue, destinationValue, travelersValue) {
+    let totalCost;
+    // Promise.all([
+    //     //
+    // ])
+    fetch(`https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/destinations/destinations`)
+    .then(data => {
+        return data.json()
+    })
+    .then(allDestinationData => {
+        let destination;
+        allDestinationData.destinations.forEach(a => {
+            if (a.destination.includes(destinationValue.slice(0, -1))) {
+                destination = a;
+            } else {
+                return false;
+            }
+        });
+        return destination;
+    })
+    .then(myDestination => {
+            console.log("getTripTotal -> myDestination", myDestination);
+        let flightCost = myDestination.estimatedFlightCostPerPerson * travelersValue;
+            console.log("getTripTotal -> flightCost", flightCost);
+        let costPerDay = myDestination.estimatedLodgingCostPerDay * durationValue;
+            console.log("getTripTotal -> costPerDay", costPerDay);
+        let rawTotalCost = flightCost + costPerDay;
+            console.log("getTripTotal -> rawTotalCost", rawTotalCost);
+        totalCost = rawTotalCost + (rawTotalCost * .10);
+            console.log("getTripTotal -> totalCost", totalCost);
+        return totalCost;
+    })
+    console.log("getTripTotal -> totalCost", totalCost);
+    return totalCost;
 }
 
-// 
-/*
-
-1 - get value of inputs
-2 - create `thePostContent` object;
-3 - post
-4 - .then(
-    invoke methods to get data again
-).then(
-    domInfo()
-)
-
-*/
+// 1 - get value of inputs
+// 2 - create `thePostContent` object;
+// 3 - post
+// 4 - .then(
+//     invoke methods to get data again
+// ).then(
+//     domInfo()
+// )
 
 // function bookTrip() {
 //     let thePostContent = {

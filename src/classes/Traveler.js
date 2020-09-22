@@ -106,15 +106,6 @@ class Traveler {
             }
         })
     }
-
-    // getDestinationData() {
-    //     traveler.getTripData();
-    //     console.log(traveler.pastTrips);
-    //     return 
-    // }
 }
 
 export default Traveler;
-// if (typeof module !== "undefined") {
-//     module.exports = Traveler;
-// };
