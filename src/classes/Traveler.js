@@ -35,7 +35,6 @@ class Traveler {
     }
 
     getTripData() {
-        //.getTime()
         var today = new Date();
         var todayWithoutTime = today.getFullYear()+'/'+`0${(today.getMonth()+1)}`+'/'+today.getDate();
         this.getPersonalInfo();
@@ -45,7 +44,6 @@ class Traveler {
             return data.json()
         })
         .then(allTripData => {
-            // console.log(allTripData);
             console.log("Traveler -> getTripData -> todayWithoutTime", todayWithoutTime)
             let userTripData = allTripData['trips'].filter(index => {
                 return index.userID == this.id;

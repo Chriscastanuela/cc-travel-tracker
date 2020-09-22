@@ -81,12 +81,7 @@ function domInfo() {
       </div>`)
     } else {
         traveler.pastTrips.forEach(element => {
-            let flightCost = element.estimatedFlightCostPerPerson * element.travelers;
-            console.log("flightCost", flightCost);
-            let lodgingCost = element.duration * element.estimatedLodgingCostPerDay;
-            console.log("lodgingCost", lodgingCost);
-            let totalCost = flightCost + lodgingCost;
-            pastExpenses.push(totalCost);
+            pastExpenses.push(calculateTripCost(element));
             console.log("pastExpenses", pastExpenses);
             pastHeader.insertAdjacentHTML(`afterend`, `<div class="Trip-Div" id="Past-Div">
             <p class="Trip-Div-Text" id="Past-Text">
@@ -106,10 +101,7 @@ function domInfo() {
       </div>`)
     } else {
         traveler.currentTrips.forEach(element => {
-            let flightCost = element.estimatedFlightCostPerPerson * element.travelers;
-            let lodgingCost = element.duration * element.estimatedLodgingCostPerDay;
-            let totalCost = flightCost + lodgingCost;
-            currentExpenses.push(totalCost);
+            currentExpenses.push(calculateTripCost(element));
             presentHeader.insertAdjacentHTML(`afterend`, `<div class="Trip-Div" id="Present-Div">
             <p class="Trip-Div-Text" id="Present-Text">
             Destination: ${element.destination}<br>
@@ -128,10 +120,7 @@ function domInfo() {
       </div>`)
     } else {
         traveler.futureTrips.forEach(element => {
-            let flightCost = element.estimatedFlightCostPerPerson * element.travelers;
-            let lodgingCost = element.duration * element.estimatedLodgingCostPerDay;
-            let totalCost = flightCost + lodgingCost;
-            futureExpenses.push(totalCost);
+            futureExpenses.push(calculateTripCost(element));
             upcomingHeader.insertAdjacentHTML(`afterend`, `<div class="Trip-Div" id="Upcoming-Div">
             <p class="Trip-Div-Text" id="Upcoming-Text">
             Destination: ${element.destination}<br>
@@ -150,10 +139,7 @@ function domInfo() {
       </div>`)
     } else {
         traveler.pendingTrips.forEach(element => {
-            let flightCost = element.estimatedFlightCostPerPerson * element.travelers;
-            let lodgingCost = element.duration * element.estimatedLodgingCostPerDay;
-            let totalCost = flightCost + lodgingCost;
-            pendingExpenses.push(totalCost);
+            pendingExpenses.push(calculateTripCost(element));
             pendingHeader.insertAdjacentHTML(`afterend`, `<div class="Trip-Div" id="Pending-Div">
             <p class="Trip-Div-Text" id="Pending-Text">
             Destination: ${element.destination}<br>
@@ -182,14 +168,6 @@ function domInfo() {
             })
         })
 }
-
-// let dateField = document.querySelector('#Date');
-// let durationField = document.querySelector('#Duration');
-// let destinationField = document.querySelector('#Destination');
-// let travelersField = document.querySelector('#Num-Of-Travelers');
-// let checkDetails = document.querySelector('.Check-Details');
-// let readyStatus = document.querySelector(`.Ready-Status`);
-// let tripTotal = document.querySelector(`.Trip-Total`);
 
 function checkDetailsFunction() {
     let dest = destinationField.value;
@@ -248,6 +226,38 @@ function getTripTotal(durationValue, destinationValue, travelersValue) {
     console.log("getTripTotal -> totalCost", totalCost);
     return totalCost;
 }
+
+function calculateTripCost(element) {
+    let flightCost = element.estimatedFlightCostPerPerson * element.travelers;
+    let lodgingCost = element.duration * element.estimatedLodgingCostPerDay;
+    let totalCost = flightCost + lodgingCost;
+    return totalCost;
+}
+
+// function newDiv(element) {
+//     `<div class="Trip-Div">
+//     <p class="Trip-Div-Text">
+//     Destination: ${element.destination}<br>
+//     Date: ${element.date}<br>
+//     Status: ${element.status}<br>
+//     Duration: ${element.duration} days<br>
+//     Travelers on board: ${element.travelers}<br>
+//     </p>
+//     </div>`
+// }
+
+// ----------------------------------------------------------------------------------
+
+// let dateField = document.querySelector('#Date');
+// let durationField = document.querySelector('#Duration');
+// let destinationField = document.querySelector('#Destination');
+// let travelersField = document.querySelector('#Num-Of-Travelers');
+// let checkDetails = document.querySelector('.Check-Details');
+// let readyStatus = document.querySelector(`.Ready-Status`);
+// let tripTotal = document.querySelector(`.Trip-Total`);
+
+// ----------------------------------------------------------------------------------
+
 
 // 1 - get value of inputs
 // 2 - create `thePostContent` object;
