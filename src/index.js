@@ -159,7 +159,7 @@ function domInfo() {
     let pending = findSum(pendingExpenses);
     let rawTravelExpenses =  past + current + future + pending;
     let totalTravelExpenses = (rawTravelExpenses * .10) + rawTravelExpenses;
-    expenses.innerHTML = `YTD Travel Expenses: ${totalTravelExpenses}`;
+    expenses.innerHTML = `YTD Travel Expenses: $${totalTravelExpenses.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}`;
 }
 
 function findSum(array) {
