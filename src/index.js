@@ -26,6 +26,7 @@ let travelersField = document.querySelector('#Num-Of-Travelers');
 let checkDetails = document.querySelector('.Check-Details');
 let readyStatus = document.querySelector(`.Ready-Status`);
 let tripTotal = document.querySelector(`.Trip-Total`);
+let bookButton = document.querySelector(`.Book-Button`);
 
 
 let pastHeader = document.querySelector('.Past-Header');
@@ -194,6 +195,7 @@ function checkDetailsFunction() {
     if (dateField.value != '' && durationField.value != '' && destinationField.value != '' && travelersField.value != '') {
         readyStatus.innerHTML = 'You are ready to book';
         tripTotal.innerHTML = `Total for this trip: ${getTripTotal()}`
+        bookButton.hidden = false;
     };
     if (dateField.value == '' || durationField.value == '' || destinationField.value == '' || travelersField.value == '') {
         readyStatus.innerHTML = 'We need more details'
