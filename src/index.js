@@ -38,13 +38,14 @@ window.onload = () => {
 
 // <-------------------------------------------->Functions
 function getDataAndShowDom() {
+    // console.log(traveler.getTripData());
     Promise.all([
         traveler.getPersonalInfo(),
         traveler.getTripData(),
         // traveler.getDestinationData()
     ])
     .then(promiseDotAllIndex => {
-        console.log(promiseDotAllIndex[0].firstName);
+        console.log(promiseDotAllIndex[1]);
         domInfo();
     })
 }
@@ -68,7 +69,7 @@ function domInfo() {
         traveler.pastTrips.forEach(element => {
             pastHeader.insertAdjacentHTML(`afterend`, `<div class="Trip-Div" id="Past-Div">
             <p class="Trip-Div-Text" id="Past-Text">
-            Destination: ${element.destinationID}<br>
+            Destination: ${element.destination}<br>
             Date: ${element.date}<br>
             Status: ${element.status}<br>
             Duration: ${element.duration} days<br>
@@ -134,5 +135,31 @@ function domInfo() {
 }
 
 // 
+/*
 
+1 - get value of inputs
+2 - create `thePostContent` object;
+3 - post
+4 - .then(
+    invoke methods to get data again
+).then(
+    domInfo()
+)
+
+*/
 // this.pendingTrips;
+
+function bookTrip() {
+    let thePostContent = {
+        id: <number>, 
+        userID: <number>, 
+        destinationID: <number>, travelers: <number>, date: <string 'YYYY/MM/DD'>, duration: <number>, status: <string 'approved' or 'pending'>, suggestedActivities: <array of strings>}
+    let thePost = {
+        method: `POST`,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify()
+    }
+    fetch(`https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/trips/trips`, thePost)
+}

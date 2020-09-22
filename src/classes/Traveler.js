@@ -67,8 +67,9 @@ class Traveler {
             })
             console.log('this', this);
             return this;
-        }).then(
-            fetch(`https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/destinations/destinations`)
+        }).then(tripData => {
+            console.log(tripData);
+            return fetch(`https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/destinations/destinations`)
             .then(data => {
                 return data.json()
             })
@@ -78,17 +79,10 @@ class Traveler {
                     // console.log("allDestinationData", Object.values(allDestinationData))
                     // console.log(this.pastTrips)
                     if (this.pastTrips.length > 0) {
-                        this.pastTrips.forEach(index => {
-                            if (index.destinationID == i.id) {
-                                index[`alt`] = i.alt;
-                                index[`destination`] = i.destination;
-                                index[`estimatedFlightCostPerPerson`] = i.estimatedFlightCostPerPerson;
-                                index[`estimatedLodgingCostPerDay`] = i.estimatedLodgingCostPerDay;
-                                index[`image`] = i.image;
-                                console.log(index);
-                            }
-                        })
+                        this.reformatTripData(`pastTrips`, i)
                     }
+                        console.log(this.pastTrips);
+                    // }
                     if (this.currentTrips.length > 0) {
                         this.currentTrips.forEach(index => {
                             if (index.destinationID == i.id) {
@@ -126,9 +120,23 @@ class Traveler {
                         })
                     }
                 })
+                return this;
             })
+        }
         )
         return theFetch;
+    }
+
+    reformatTripData(tripKey, i) {
+        this[tripKey].forEach(index => {
+            if (index.destinationID == i.id) {
+                index[`alt`] = i.alt;
+                index[`destination`] = i.destination;
+                index[`estimatedFlightCostPerPerson`] = i.estimatedFlightCostPerPerson;
+                index[`estimatedLodgingCostPerDay`] = i.estimatedLodgingCostPerDay;
+                index[`image`] = i.image;
+            }
+        })
     }
 
     // getDestinationData() {

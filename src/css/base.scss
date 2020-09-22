@@ -87,7 +87,7 @@ $primary-background: rgb(255, 255, 255);
   @include sectionBorders;
   border-top: none;
   display: grid;
-  grid-template-columns: .75fr 2fr;
+  grid-template-columns: 1fr 1fr;
   background-color: #f3f0f0;
 }
 
@@ -123,6 +123,7 @@ $primary-background: rgb(255, 255, 255);
 
 .Traveler-Main-Right {
   display: inline-block;
+  margin-top: 14px;
 }
 
 .YTD-Expenses {
@@ -140,10 +141,12 @@ $primary-background: rgb(255, 255, 255);
   background-color: $primary-background;
   box-shadow: 5px 10px 28px #888888;
   height: 450px;
-  width: 990px;
+  width: 250px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   row-gap: 10px;
+  overflow-x: scroll;
+  overflow-y: hidden;
 }
 
 .Your-Trip-Header {
@@ -231,7 +234,80 @@ $primary-background: rgb(255, 255, 255);
   border-right: none;
 }
 
-/*
-overflow-y: scroll;
-overflow-wrap: break-word;
-*/
+@media screen and (min-width: 539px) {
+  .Traveler-Main-Right {
+    display: inline-block;
+    margin-top: 0px;
+  }
+}
+
+@media screen and (min-width: 650px) {
+  .Book-Trip {
+    margin: 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 75px;
+    background-color: $primary-background;
+    box-shadow: 5px 10px 28px #888888;
+    height: 450px;
+    max-width: 306px;
+  }
+
+  .Traveler-Main-Right {
+    display: inline-block;
+    margin-top: 0px;
+  }
+
+  .Traveler-Main {
+    @include sectionBorders;
+    border-top: none;
+    display: grid;
+    // grid-template-columns: 1fr 2fr;
+    background-color: #f3f0f0;
+  }
+  .TripsSection {
+    margin: 10px;
+    margin-top: 47px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 100px;
+    background-color: $primary-background;
+    box-shadow: 5px 10px 28px #888888;
+    height: 450px;
+    // width: 990px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    row-gap: 10px;
+    min-width: 311px;
+  }
+}
+
+@media screen and (min-width: 1394px) {
+
+  .Traveler-Main {
+    @include sectionBorders;
+    border-top: none;
+    display: grid;
+    grid-template-columns: .75fr 2fr;
+    background-color: #f3f0f0;
+  }
+
+  .Traveler-Main-Right {
+    display: inline-block;
+  }
+
+  .TripsSection {
+    margin: 10px;
+    margin-top: 47px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 100px;
+    background-color: $primary-background;
+    box-shadow: 5px 10px 28px #888888;
+    height: 450px;
+    width: 990px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    row-gap: 10px;
+  }
+}
