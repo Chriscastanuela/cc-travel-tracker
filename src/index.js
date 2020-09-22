@@ -18,8 +18,12 @@ import './images/user.png';
 let greeting = document.querySelector('.Greeting');
 let expenses = document.querySelector('.YTD-Expenses');
 let userFullName = document.querySelector('.User-Full-Name');
+
+let dateField = document.querySelector('#Date');
+let durationField = document.querySelector('#Duration');
 let destinationField = document.querySelector('#Destination');
-let checkDetails = document.querySelector('.Check-Details')
+let travelersField = document.querySelector('#Num-Of-Travelers');
+let checkDetails = document.querySelector('.Check-Details');
 let readyStatus = document.querySelector(`.Ready-Status`);
 let tripTotal = document.querySelector(`.Trip-Total`);
 
@@ -178,11 +182,22 @@ function domInfo() {
         })
 }
 
-// tripTotal
-// readyStatus
+// let dateField = document.querySelector('#Date');
+// let durationField = document.querySelector('#Duration');
+// let destinationField = document.querySelector('#Destination');
+// let travelersField = document.querySelector('#Num-Of-Travelers');
+// let checkDetails = document.querySelector('.Check-Details');
+// let readyStatus = document.querySelector(`.Ready-Status`);
+// let tripTotal = document.querySelector(`.Trip-Total`);
 
 function checkDetailsFunction() {
-    //
+    if (dateField.value != '' && durationField.value != '' && destinationField.value != '' && travelersField.value != '') {
+        readyStatus.innerHTML = 'You are ready to book';
+        tripTotal.innerHTML = `Total for this trip: ${getTripTotal()}`
+    };
+    if (dateField.value == '' || durationField.value == '' || destinationField.value == '' || travelersField.value == '') {
+        readyStatus.innerHTML = 'We need more details'
+    }
 }
 
 function findSum(array) {
@@ -191,6 +206,23 @@ function findSum(array) {
         return acc;
     }, 0)
     return theReduce;
+}
+
+function getTripTotal() {
+    /*
+    duration
+    destination
+    travelers
+    */
+    return fetch(`https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/destinations/destinations`)
+        .then(data => {
+            return data.json()
+        })
+        .then(allDestinationData => {
+            allDestinationData.destinations.forEach(i => {
+                destinationField.insertAdjacentHTML(`afterbegin`, `<option value=${i.destination}>${i.destination}</option>`)
+            })
+        })
 }
 
 // 
