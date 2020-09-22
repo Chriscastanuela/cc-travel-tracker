@@ -63,6 +63,14 @@ $primary-background: rgb(255, 255, 255);
   display: grid;
   background-color: #f3f0f0;
 }
+
+@mixin bookTripDivs {
+  justify-self: center;
+  border-radius: 15px;
+  border-width: 1px;
+  background-color: #f2eede;
+  font-family: 'Open Sans', sans-serif;
+}
     // <-------------------------------------------->Traveler
 
 // <------------------------------> Wrapper
@@ -133,6 +141,12 @@ $primary-background: rgb(255, 255, 255);
 
 .Book-Trip {
   @include bookTrip;
+}
+
+#Date {
+  @include bookTripDivs;
+  width: 150px;
+  // width: 200px;
 }
 
 .BTHeader {
