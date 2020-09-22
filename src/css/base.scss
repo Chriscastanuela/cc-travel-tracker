@@ -167,16 +167,23 @@ $primary-background: rgb(255, 255, 255);
   cursor: pointer;
 }
 
-.Ready-Status {
+@mixin readyStatusAndTripTotal {
   justify-self: center;
   font-family: 'Open Sans', sans-serif;
   margin: 0;
 }
 
+.Ready-Status {
+  @include readyStatusAndTripTotal;
+}
+
 .Trip-Total {
-  justify-self: center;
-  font-family: 'Open Sans', sans-serif;
-  margin: 0;
+  @include readyStatusAndTripTotal;
+}
+
+.Book-Button {
+  @include bookTripDivs;
+  cursor: pointer;
 }
 
 .BTHeader {
