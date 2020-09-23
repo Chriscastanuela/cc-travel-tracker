@@ -1,20 +1,12 @@
-// <-------------------------------------------->Class Imports
 import Traveler from './classes/Traveler';
 
-// <-------------------------------------------->CSS Imports
-// CSS or SCSS example:
 
 import './css/base.scss';
-// import './css/footer.scss';
-// import './css/queries.scss';
 
-// <-------------------------------------------->Images
-// image example --- also need to link to it in the index.html
 
-// import './images/Beach.jpg'
 import './images/user.png';
 
-// <-------------------------------------------->QuerySelectors
+
 let greeting = document.querySelector('.Greeting');
 let expenses = document.querySelector('.YTD-Expenses');
 let userFullName = document.querySelector('.User-Full-Name');
@@ -28,29 +20,24 @@ let readyStatus = document.querySelector(`.Ready-Status`);
 let tripTotal = document.querySelector(`.Trip-Total`);
 let bookButton = document.querySelector(`.Book-Button`);
 
-let pastSection = document.querySelector('.Past');
-let presentSection = document.querySelector('.Present');
-let upcomingSection = document.querySelector('.Upcoming');
-let pendingSection = document.querySelector('.Pending');
-
 let pastHeader = document.querySelector('.Past-Header');
 let presentHeader = document.querySelector('.Present-Header');
 let upcomingHeader = document.querySelector('.Upcoming-Header');
 let pendingHeader = document.querySelector('.Pending-Header');
 
-// <-------------------------------------------->Class Declarations
+
 let traveler;
 
-// <-------------------------------------------->Event Listeners
+
 window.onload = () => {
-    createClasses();
+    // createClasses();
+    traveler = new Traveler(7);
     getDataAndShowDom();
 };
-
 checkDetails.addEventListener('click', checkDetailsFunction);
 bookButton.addEventListener('click', bookTrip);
 
-// <-------------------------------------------->Functions
+
 function getDataAndShowDom() {
     Promise.all([
         traveler.getPersonalInfo(),
@@ -61,10 +48,9 @@ function getDataAndShowDom() {
     })
 }
 
-function createClasses() {
-    traveler = new Traveler(7);
-    console.log(traveler);
-}
+// function createClasses() {
+//     traveler = new Traveler(7);
+// }
 
 function domInfo() {
     greeting.innerHTML = `Welcome back, ${traveler.firstName} the ${traveler.travelerType}!`;
@@ -73,10 +59,6 @@ function domInfo() {
     let currentExpenses = [];
     let futureExpenses = [];
     let pendingExpenses = [];
-    // pastHeader
-    // presentHeader
-    // upcomingHeader
-    // pendingHeader
     analyzeTripAmounts(pastHeader, `pastTrips`, pastExpenses);
     analyzeTripAmounts(presentHeader, `currentTrips`, currentExpenses);
     analyzeTripAmounts(upcomingHeader, `futureTrips`, futureExpenses);
@@ -96,7 +78,8 @@ function domInfo() {
             allDestinationData.destinations.forEach(i => {
                 destinationField.insertAdjacentHTML(`afterbegin`, `<option value=${i.id}>${i.destination}</option>`)
             })
-        })
+        }
+    )
 }
 
 function checkDetailsFunction() {
@@ -122,7 +105,6 @@ function findSum(array) {
 }
 
 function getTripTotal(durationValue, destinationValue, travelersValue) {
-    // let totalCost;
     fetch(`https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/destinations/destinations`)
     .then(data => {
         return data.json()
@@ -139,16 +121,10 @@ function getTripTotal(durationValue, destinationValue, travelersValue) {
         return destination;
     })
     .then(myDestination => {
-            console.log("getTripTotal -> myDestination", myDestination);
         let flightCost = myDestination.estimatedFlightCostPerPerson * travelersValue;
-            console.log("getTripTotal -> flightCost", flightCost);
         let costPerDay = myDestination.estimatedLodgingCostPerDay * durationValue;
-            console.log("getTripTotal -> costPerDay", costPerDay);
         let rawTotalCost = flightCost + costPerDay;
-            console.log("getTripTotal -> rawTotalCost", rawTotalCost);
         let totalCost = rawTotalCost + (rawTotalCost * .10);
-            console.log("getTripTotal -> totalCost", totalCost);
-        console.log("getTripTotal -> totalCost", totalCost)
         tripTotal.innerHTML = `Total for this trip: $${totalCost.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}`
     })
 }
@@ -178,7 +154,6 @@ function bookTrip() {
             status: 'pending',
             suggestedActivities: []
         };
-        console.log("bookTrip -> thePostContent", thePostContent);
         let thePost = {
             method: `POST`,
             headers: {
@@ -188,7 +163,9 @@ function bookTrip() {
         }
         fetch(`https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/trips/trips`, thePost)
         .then(response => {
-            getDataAndShowDom()
+            getDataAndShowDom();
+            location.reload();
+            return false;
         }
         );
     };
@@ -235,12 +212,3 @@ function newDiv(element) {
     </p>
     </div>`
 }
-
-// ----------------------------------------------------------------------------------
-
-// let pastSection = document.querySelector('.Past');
-// let presentSection = document.querySelector('.Present');
-// let upcomingSection = document.querySelector('.Upcoming');
-// let pendingSection = document.querySelector('.Pending');
-
-// ----------------------------------------------------------------------------------

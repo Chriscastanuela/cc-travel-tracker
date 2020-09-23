@@ -21,11 +21,11 @@
         <p class="Greeting"></p>
         <p class="Expenses"></p>
         <div class="Book-Trip">
-          <h3 class="BTHeader">Book a Trip!</h3>
-          <input min="2020-09-26" type="date" name="Date" id="Date" placeholder="Date">
-          <input type="number" name="Duration" id="Duration" placeholder="Duration" min="0">
-          <input type="number" name="Num-Of-Travelers" id="Num-Of-Travelers" placeholder="Travelers" min="0">
-          <select name="Destination" id="Destination">
+          <h1 class="BTHeader">Book a Trip!</h1>
+          <input aria-label="DateInput" class="DateInput" min="2020-09-26" type="date" name="Date" id="Date" placeholder="Date">
+          <input aria-label="DurationInput" class="DurationInput" type="number" name="Duration" id="Duration" placeholder="Duration" min="0">
+          <input aria-label="TravelersInput" class="TravelersInput" type="number" name="Num-Of-Travelers" id="Num-Of-Travelers" placeholder="Travelers" min="0">
+          <select aria-label="DestinationInput" class="DestinationInput" name="Destination" id="Destination">
             <!---->
           </select>
           <button class="Check-Details">Check Details</button>
@@ -38,19 +38,19 @@
         <p class="YTD-Expenses"></p>
         <section class="TripsSection">
           <div class="Past-And-Your-Trips">
-            <h3 class="Your-Trip-Header">Your Trips</h3>
+            <h1 class="Your-Trip-Header">Your Trips</h1>
             <div class="Past">
-              <h3 class="Past-Header">Past </h3>
+              <h1 class="Past-Header">Past</h1>
             </div>
           </div>
             <div class="Present">
-              <h3 class="Present-Header">Present </h3>
+              <h1 class="Present-Header">Present</h1>
             </div>
             <div class="Upcoming">
-              <h3 class="Upcoming-Header">Upcoming </h3>
+              <h1 class="Upcoming-Header">Upcoming</h1>
             </div>
             <div class="Pending">
-              <h3 class="Pending-Header">Pending </h3>
+              <h1 class="Pending-Header">Pending</h1>
             </div>
         </section>
       </div>
