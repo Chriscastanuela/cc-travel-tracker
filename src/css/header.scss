@@ -1,3 +1,10 @@
+@mixin sectionBorders {
+    border-style: solid;
+    border-left: none;
+    border-right: none;
+    border-width: 1px;
+}
+
 .Traveler-Header {
     @include sectionBorders;
     display: inline-block;
