@@ -1,0 +1,73 @@
+.Greeting{
+    font-family: 'Open Sans', sans-serif;
+    margin-left: 15px;
+    margin-bottom: 0px;
+  }
+  
+  .Expenses{
+    font-family: 'Open Sans', sans-serif;
+    float: right;
+  }
+  
+  .Book-Trip {
+    @include bookTrip;
+  }
+  
+  #Date {
+    @include bookTripDivsAndInputs;
+  }
+  
+  #Duration {
+    @include bookTripDivsAndInputs;
+  }
+  
+  #Num-Of-Travelers {
+    @include bookTripDivsAndInputs;
+  }
+  
+  #Destination {
+    @include bookTripDivsAndInputs;
+  }
+  
+  .Check-Details {
+    @include bookTripDivsAndInputs;
+    cursor: pointer;
+    transition-duration: .6s;
+    max-width: 100px;
+  }
+  
+  .Check-Details:hover {
+    background-color: #58d6ff;
+  }
+  
+  @mixin readyStatusAndTripTotal {
+    justify-self: center;
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+  }
+  
+  .Ready-Status {
+    @include readyStatusAndTripTotal;
+  }
+  
+  .Trip-Total {
+    @include readyStatusAndTripTotal;
+  }
+  
+  .Book-Button {
+    @include bookTripDivsAndInputs;
+    cursor: pointer;
+    font-family: 'Kaushan Script', cursive;
+    max-width: 100px;
+    transition-duration: .6s;
+  }
+  
+  .Book-Button:hover {
+    background-color: #58d6ff;
+  }
+  
+  .BTHeader {
+    margin-top: 15px;
+    margin-left: 40px;
+    font-family: 'Kaushan Script', cursive;
+  }

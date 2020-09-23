@@ -1,0 +1,40 @@
+@mixin sectionBorders {
+    border-style: solid;
+    border-left: none;
+    border-right: none;
+    border-width: 1px;
+}
+
+.Traveler-Header {
+    @include sectionBorders;
+    display: inline-block;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 2fr;
+    background-color: #f2eede;
+    justify-content: end;
+}
+  
+.Company-Name {
+    margin-top: 37px;
+    margin-left: 35px;
+    font-family: 'Kaushan Script', cursive;
+    font-size: xx-large;
+    margin-bottom: 0px;
+}
+  
+.Icon-and-Name {
+    justify-self: center;
+    align-self: center;
+    grid-column: 4;
+    margin-top: 5px;
+}
+  
+.UserIcon {
+    margin-left: 33px;
+    border-radius: 50%;
+}
+  
+.User-Full-Name {
+    margin-top: 3px;
+    font-family: 'Open Sans', sans-serif;
+}

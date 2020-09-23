@@ -1,0 +1,12 @@
+@mixin sectionBorders {
+    border-style: solid;
+    border-left: none;
+    border-right: none;
+    border-width: 1px;
+}
+
+.Traveler-Main {
+    @include sectionBorders;
+    grid-template-columns: 1fr 1fr;
+    @include travelerMain;
+}

@@ -1,8 +1,19 @@
 import Traveler from './classes/Traveler';
 
+
+
+
 import './css/base.scss';
+import './css/welcome.scss';
+import './css/header.scss';
+
+
+
 
 import './images/user.png';
+
+
+
 
 let login = document.querySelector('.Login');
 let userName = document.querySelector('.UserName');
@@ -28,30 +39,32 @@ let presentHeader = document.querySelector('.Present-Header');
 let upcomingHeader = document.querySelector('.Upcoming-Header');
 let pendingHeader = document.querySelector('.Pending-Header');
 
-
 let traveler;
 
-credsButton.addEventListener('click', checkCredsFunction)
+
+
+
+credsButton.addEventListener('click', checkCredsFunction);
 checkDetails.addEventListener('click', checkDetailsFunction);
 bookButton.addEventListener('click', bookTrip);
 
+
+
+
 function checkCredsFunction() {
-    console.log('Hello')
-    if (userName.value.includes('traveler') && password.value == 'travel2020') {
-        console.log(userName.value);
+    let name = userName.value.slice(0, 8)
+    let theID = userName.value.slice(8);
+    if (theID <= 50 && userName.value.length == 10 && name == 'traveler' && password.value == 'travel2020') {
         createClasses();
         getDataAndShowDom();
         login.style.display = 'none';
     } else {
-        console.log(userName.value);
         loginResult.innerHTML = "Sorry, invalid username or password"
     }
 }
-
 function createClasses() {
     traveler = new Traveler(userName.value.slice(-2));
 }
-
 function getDataAndShowDom() {
     Promise.all([
         traveler.getPersonalInfo(),
@@ -61,7 +74,6 @@ function getDataAndShowDom() {
         domInfo();
     })
 }
-
 function domInfo() {
     greeting.innerHTML = `Welcome back, ${traveler.firstName} the ${traveler.travelerType}!`;
     userFullName.innerHTML = `${traveler.fullName}`;
@@ -91,7 +103,6 @@ function domInfo() {
         }
     )
 }
-
 function checkDetailsFunction() {
     let dest = destinationField.value;
     let duration = durationField.value;
@@ -105,15 +116,6 @@ function checkDetailsFunction() {
         readyStatus.innerHTML = 'We need more details'
     }
 }
-
-function findSum(array) {
-    let theReduce = array.reduce((acc, i) => {
-        acc += i
-        return acc;
-    }, 0)
-    return theReduce;
-}
-
 function getTripTotal(durationValue, destinationValue, travelersValue) {
     fetch(`https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/destinations/destinations`)
     .then(data => {
@@ -138,15 +140,6 @@ function getTripTotal(durationValue, destinationValue, travelersValue) {
         tripTotal.innerHTML = `Total for this trip: $${totalCost.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}`
     })
 }
-
-function fixDateFormat(date) {
-    let year = date.slice(0, 4)
-    let month = date.slice(5, 7);
-    let day = date.slice(8, 10);
-    let newDate = year + '/' + month + '/' + day;
-    return newDate;
-}
-
 function bookTrip() {
     let dest = parseInt(destinationField.value);
     let duration = parseInt(durationField.value);
@@ -174,19 +167,34 @@ function bookTrip() {
         fetch(`https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/trips/trips`, thePost)
         .then(response => {
             getDataAndShowDom();
-            location.reload();
-            return false;
+            // location.reload();
+            // return false;
         }
         );
     };
     if (dateField.value == '' || durationField.value == '' || destinationField.value == '' || travelersField.value == '') {
         bookButton.hidden = true;
-        console.log("Hello");
         readyStatus.innerHTML = 'We need more details'
     }
 }
 
 
+
+
+function findSum(array) {
+    let theReduce = array.reduce((acc, i) => {
+        acc += i
+        return acc;
+    }, 0)
+    return theReduce;
+}
+function fixDateFormat(date) {
+    let year = date.slice(0, 4)
+    let month = date.slice(5, 7);
+    let day = date.slice(8, 10);
+    let newDate = year + '/' + month + '/' + day;
+    return newDate;
+}
 function analyzeTripAmounts(header, trips, expenses) {
     if (traveler[trips].length == 0) {
         header.insertAdjacentHTML(`afterend`, emptyDiv());
@@ -197,20 +205,17 @@ function analyzeTripAmounts(header, trips, expenses) {
         });
     }
 }
-
 function emptyDiv() {
     return `<div class="Trip-Div" id="Past-Div">
     <p class="Trip-Div-Text" id="Past-Text">You don't have any trips in this section</p>
     </div>`
 }
-
 function calculateTripCost(element) {
     let flightCost = element.estimatedFlightCostPerPerson * element.travelers;
     let lodgingCost = element.duration * element.estimatedLodgingCostPerDay;
     let totalCost = flightCost + lodgingCost;
     return totalCost;
 }
-
 function newDiv(element) {
     return `<div class="Trip-Div">
     <p class="Trip-Div-Text">

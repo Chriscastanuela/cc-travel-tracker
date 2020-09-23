@@ -1,4 +1,6 @@
-/* Variables*/
+
+// <------------------------------> Variables
+
 $primary-background: rgb(255, 255, 255);
 
 @mixin marginPadding {
@@ -33,7 +35,9 @@ $primary-background: rgb(255, 255, 255);
 }
 
 @mixin bookTrip {
-  margin: 10px;
+  // margin: 10px;
+  margin-top: 45px;
+  margin-left: 20px;
   border-style: solid;
   border-width: 1px;
   border-radius: 75px;
@@ -65,16 +69,21 @@ $primary-background: rgb(255, 255, 255);
   background-color: #f3f0f0;
 }
 
-@mixin bookTripDivs {
+@mixin bookTripDivsAndInputs {
   justify-self: center;
   border-radius: 15px;
   border-width: 1px;
   background-color: #f2eede;
   font-family: 'Open Sans', sans-serif;
   width: 150px;
-  // width: 200px;
 }
-    // <-------------------------------------------->Traveler
+
+// <------------------------------> Imports
+@import 'header';
+@import 'welcome';
+@import 'main';
+@import 'mainLeft';
+@import 'mainRight';
 
 // <------------------------------> Wrapper
 
@@ -84,220 +93,6 @@ $primary-background: rgb(255, 255, 255);
   min-height: 770px;
   display: grid;
   grid-template-rows: .5fr 2fr .3fr;
-}
-
-// <------------------------------> Header
-.Traveler-Header {
-  @include sectionBorders;
-  display: inline-block;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-  background-color: #f2eede;
-  justify-content: end;
-}
-
-.Company-Name {
-  margin-top: 37px;
-  margin-left: 35px;
-  font-family: 'Kaushan Script', cursive;
-  font-size: xx-large;
-  margin-bottom: 0px;
-}
-
-.Icon-and-Name {
-  margin-left: 60px;
-  align-self: end;
-  grid-column: 6;
-  margin-top: 5px;
-}
-
-.UserIcon {
-  margin-left: 33px;
-  border-radius: 50%;
-}
-
-.User-Full-Name {
-  margin-top: 3px;
-  font-family: 'Open Sans', sans-serif;
-}
-
-// <------------------------------> Main
-
-.Traveler-Main {
-  @include sectionBorders;
-  grid-template-columns: 1fr 1fr;
-  @include travelerMain;
-}
-
-// <--------------------> Main-Left
-
-.Greeting{
-  font-family: 'Open Sans', sans-serif;
-  margin-left: 15px;
-  margin-bottom: 0px;
-}
-
-.Expenses{
-  font-family: 'Open Sans', sans-serif;
-  float: right;
-}
-
-.Book-Trip {
-  @include bookTrip;
-}
-
-#Date {
-  @include bookTripDivs;
-}
-
-#Duration {
-  @include bookTripDivs;
-}
-
-#Num-Of-Travelers {
-  @include bookTripDivs;
-}
-
-#Destination {
-  @include bookTripDivs;
-}
-
-.Check-Details {
-  @include bookTripDivs;
-  cursor: pointer;
-  transition-duration: .6s;
-  max-width: 100px;
-}
-
-.Check-Details:hover {
-  background-color: #58d6ff;
-}
-
-@mixin readyStatusAndTripTotal {
-  justify-self: center;
-  font-family: 'Open Sans', sans-serif;
-  margin: 0;
-}
-
-.Ready-Status {
-  @include readyStatusAndTripTotal;
-}
-
-.Trip-Total {
-  @include readyStatusAndTripTotal;
-}
-
-.Book-Button {
-  @include bookTripDivs;
-  cursor: pointer;
-  font-family: 'Kaushan Script', cursive;
-  max-width: 100px;
-  transition-duration: .6s;
-}
-
-.Book-Button:hover {
-  background-color: #58d6ff;
-}
-
-.BTHeader {
-  margin-top: 15px;
-  margin-left: 40px;
-  font-family: 'Kaushan Script', cursive;
-}
-
-// <--------------------> Main-Right
-
-.Traveler-Main-Right {
-  display: inline-block;
-  margin-top: 14px;
-}
-
-.YTD-Expenses {
-  font-family: 'Open Sans', sans-serif;
-  float: right;
-  margin-right: 110px;
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
-
-.TripsSection {
-  @include tripsSectionMixin;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  width: 250px;
-}
-
-.Your-Trip-Header {
-  margin-top: 15px;
-  margin-left: 90px;
-  font-family: 'Kaushan Script', cursive;
-}
-
-.Past {
-  @include TripsSectionDivs;
-  margin-left: 12px;
-  // grid-column: 1;
-}
-
-.Past-Header {
-  @include TripsSectionDivHeaders;
-}
-
-.Present {
-  @include TripsSectionDivs;
-  margin-left: 10px;
-  margin-top: 60px;
-  margin-bottom: 10px;
-}
-
-.Present-Header {
-  @include TripsSectionDivHeaders;
-}
-
-.Upcoming {
-  @include TripsSectionDivs;
-  grid-column: 3;
-  margin-left: 10px;
-  margin-top: 60px;
-  margin-bottom: 10px;
-}
-
-.Upcoming-Header {
-  @include TripsSectionDivHeaders;
-}
-
-.Pending {
-  @include TripsSectionDivs;
-  margin-left: 5px;
-  margin-top: 60px;
-  margin-bottom: 10px;
-}
-
-.Pending-Header {
-  @include TripsSectionDivHeaders;
-  
-}
-
-.Trip-Div {
-  font-family: 'Open Sans', sans-serif;
-  margin-left: 4px;
-  align-self: center;
-  background-color: $primary-background;
-  width: 215px;
-  border-radius: 75px;
-  border-style: solid;
-  border-width: 1px;
-  display: grid;
-  grid-template-rows: .5fr 2fr .5fr;
-  height: 260px;
-  box-shadow: 5px 10px 28px #888888;
-  overflow-y: scroll;
-  overflow-wrap: break-word;
-}
-
-.Trip-Div-Text {
-  grid-row: 2;
-  margin-left: 15px;
 }
 
 // <--------------------------------------------> Footer

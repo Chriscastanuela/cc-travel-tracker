@@ -8,7 +8,7 @@ let travelAgent2 = new TravelAgent();
 
 describe('TravelAgent', function() {
 
-  describe('Basics', function() {
+  describe('Properties', function() {
 
     it('1. the variable should be an object', function() {
     
