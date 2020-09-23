@@ -38,17 +38,14 @@ credsButton.addEventListener('click', checkCredsFunction);
 checkDetails.addEventListener('click', checkDetailsFunction);
 bookButton.addEventListener('click', bookTrip);
 
-
-
 function checkCredsFunction() {
-    console.log('Hello')
-    if (userName.value.includes('traveler') && password.value == 'travel2020') {
-        console.log(userName.value);
+    let name = userName.value.slice(0, 8)
+    let theID = userName.value.slice(8);
+    if (theID <= 50 && userName.value.length == 10 && name == 'traveler' && password.value == 'travel2020') {
         createClasses();
         getDataAndShowDom();
         login.style.display = 'none';
     } else {
-        console.log(userName.value);
         loginResult.innerHTML = "Sorry, invalid username or password"
     }
 }
@@ -186,7 +183,6 @@ function bookTrip() {
     };
     if (dateField.value == '' || durationField.value == '' || destinationField.value == '' || travelersField.value == '') {
         bookButton.hidden = true;
-        console.log("Hello");
         readyStatus.innerHTML = 'We need more details'
     }
 }
