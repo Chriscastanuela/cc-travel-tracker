@@ -67,7 +67,7 @@ $primary-background: rgb(255, 255, 255);
   background-color: #f3f0f0;
 }
 
-@mixin bookTripDivs {
+@mixin bookTripDivsAndInputs {
   justify-self: center;
   border-radius: 15px;
   border-width: 1px;
@@ -93,7 +93,7 @@ $primary-background: rgb(255, 255, 255);
   @include sectionBorders;
   display: inline-block;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr 2fr;
   background-color: #f2eede;
   justify-content: end;
 }
@@ -107,9 +107,9 @@ $primary-background: rgb(255, 255, 255);
 }
 
 .Icon-and-Name {
-  margin-left: 60px;
-  align-self: end;
-  grid-column: 6;
+  justify-self: center;
+  align-self: center;
+  grid-column: 4;
   margin-top: 5px;
 }
 
@@ -149,23 +149,23 @@ $primary-background: rgb(255, 255, 255);
 }
 
 #Date {
-  @include bookTripDivs;
+  @include bookTripDivsAndInputs;
 }
 
 #Duration {
-  @include bookTripDivs;
+  @include bookTripDivsAndInputs;
 }
 
 #Num-Of-Travelers {
-  @include bookTripDivs;
+  @include bookTripDivsAndInputs;
 }
 
 #Destination {
-  @include bookTripDivs;
+  @include bookTripDivsAndInputs;
 }
 
 .Check-Details {
-  @include bookTripDivs;
+  @include bookTripDivsAndInputs;
   cursor: pointer;
   transition-duration: .6s;
   max-width: 100px;
@@ -190,7 +190,7 @@ $primary-background: rgb(255, 255, 255);
 }
 
 .Book-Button {
-  @include bookTripDivs;
+  @include bookTripDivsAndInputs;
   cursor: pointer;
   font-family: 'Kaushan Script', cursive;
   max-width: 100px;
