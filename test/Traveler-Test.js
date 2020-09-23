@@ -30,22 +30,4 @@ describe('Traveler', function() {
       expect(traveler2.identifier).to.equal(2);
     });
   });
-
-  // describe('Traveler Methods', function() {
-  
-  //   it('4. should display trips: Past, Present, Upcoming, and Pending', function() {
-    
-  //     // expect(/* */).to.equal();
-  //     // expect(/* */).to.equal();
-  //     // expect(/* */).to.equal();
-  //     // expect(/* */).to.equal();
-
-  //     expect(traveler1.getPersonalInfo(1)).to.equal({id: 1, name: 'Ham Leadbeater', travelerType: 'relaxer'});
-  //   });
-
-  //   it('5. should display the total amount I have spent on trips this year. This should be calculated from the trips data and include a travel agent’s 10% fee ', function() {
-    
-  //     expect(/* */).to.equal();
-  //   });
-  // });
 });
