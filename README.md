@@ -2,7 +2,7 @@
 # Travel Tracker'
 A project by Christopher Castanuela
 
-![app image](.src/images/App.png)
+![image]('src/images/App.png')
 
 ## Contents 
 * [About](#about)

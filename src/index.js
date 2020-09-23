@@ -34,6 +34,11 @@ let readyStatus = document.querySelector(`.Ready-Status`);
 let tripTotal = document.querySelector(`.Trip-Total`);
 let bookButton = document.querySelector(`.Book-Button`);
 
+let past = document.querySelector('.Past');
+let present = document.querySelector('.Present');
+let upcoming = document.querySelector('.Upcoming');
+let pending = document.querySelector('.Pending');
+
 let pastHeader = document.querySelector('.Past-Header');
 let presentHeader = document.querySelector('.Present-Header');
 let upcomingHeader = document.querySelector('.Upcoming-Header');
@@ -81,10 +86,10 @@ function domInfo() {
     let currentExpenses = [];
     let futureExpenses = [];
     let pendingExpenses = [];
-    analyzeTripAmounts(pastHeader, `pastTrips`, pastExpenses);
-    analyzeTripAmounts(presentHeader, `currentTrips`, currentExpenses);
-    analyzeTripAmounts(upcomingHeader, `futureTrips`, futureExpenses);
-    analyzeTripAmounts(pendingHeader, `pendingTrips`, pendingExpenses);
+    analyzeTripAmounts(pastHeader, `pastTrips`, pastExpenses, '.Past');
+    analyzeTripAmounts(presentHeader, `currentTrips`, currentExpenses, '.Present');
+    analyzeTripAmounts(upcomingHeader, `futureTrips`, futureExpenses, '.Upcoming');
+    analyzeTripAmounts(pendingHeader, `pendingTrips`, pendingExpenses, '.Pending');
     let past = findSum(pastExpenses);
     let current = findSum(currentExpenses);
     let future = findSum(futureExpenses);
@@ -166,6 +171,7 @@ function bookTrip() {
         }
         fetch(`https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/trips/trips`, thePost)
         .then(response => {
+            createClasses();
             getDataAndShowDom();
             // location.reload();
             // return false;
@@ -195,8 +201,8 @@ function fixDateFormat(date) {
     let newDate = year + '/' + month + '/' + day;
     return newDate;
 }
-function analyzeTripAmounts(header, trips, expenses) {
-    if (traveler[trips].length == 0) {
+function analyzeTripAmounts(header, trips, expenses, div) {
+    if (traveler[trips].length == 0 && !document.querySelector(div).contains(document.querySelector('.Trip-Div'))) {
         header.insertAdjacentHTML(`afterend`, emptyDiv());
     } else {
         traveler[trips].forEach(element => {
@@ -206,8 +212,8 @@ function analyzeTripAmounts(header, trips, expenses) {
     }
 }
 function emptyDiv() {
-    return `<div class="Trip-Div" id="Past-Div">
-    <p class="Trip-Div-Text" id="Past-Text">You don't have any trips in this section</p>
+    return `<div class="Trip-Div">
+    <p class="Trip-Div-Text">You don't have any trips in this section</p>
     </div>`
 }
 function calculateTripCost(element) {
