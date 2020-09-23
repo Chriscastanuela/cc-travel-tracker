@@ -35,7 +35,6 @@ class Traveler {
     }
 
     getTripData() {
-        //.getTime()
         var today = new Date();
         var todayWithoutTime = today.getFullYear()+'/'+`0${(today.getMonth()+1)}`+'/'+today.getDate();
         this.getPersonalInfo();
@@ -45,7 +44,6 @@ class Traveler {
             return data.json()
         })
         .then(allTripData => {
-            // console.log(allTripData);
             console.log("Traveler -> getTripData -> todayWithoutTime", todayWithoutTime)
             let userTripData = allTripData['trips'].filter(index => {
                 return index.userID == this.id;
@@ -67,78 +65,45 @@ class Traveler {
             })
             console.log('this', this);
             return this;
-        }).then(
-            fetch(`https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/destinations/destinations`)
+        }).then(tripData => {
+            console.log(tripData);
+            return fetch(`https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/destinations/destinations`)
             .then(data => {
                 return data.json()
             })
             .then(allDestinationData => {
-                // Object.values(allDestinationData[0]).forEach(i => {
                 allDestinationData.destinations.forEach(i => {
-                    // console.log("allDestinationData", Object.values(allDestinationData))
-                    // console.log(this.pastTrips)
                     if (this.pastTrips.length > 0) {
-                        this.pastTrips.forEach(index => {
-                            if (index.destinationID == i.id) {
-                                index[`alt`] = i.alt;
-                                index[`destination`] = i.destination;
-                                index[`estimatedFlightCostPerPerson`] = i.estimatedFlightCostPerPerson;
-                                index[`estimatedLodgingCostPerDay`] = i.estimatedLodgingCostPerDay;
-                                index[`image`] = i.image;
-                                console.log(index);
-                            }
-                        })
+                        this.reformatTripData(`pastTrips`, i)
                     }
                     if (this.currentTrips.length > 0) {
-                        this.currentTrips.forEach(index => {
-                            if (index.destinationID == i.id) {
-                                index[`alt`] = i.alt;
-                                index[`destination`] = i.destination;
-                                index[`estimatedFlightCostPerPerson`] = i.estimatedFlightCostPerPerson;
-                                index[`estimatedLodgingCostPerDay`] = i.estimatedLodgingCostPerDay;
-                                index[`image`] = i.image;
-                                console.log(index);
-                            }
-                        })
+                        this.reformatTripData(`currentTrips`, i)
                     }
                     if (this.pendingTrips.length > 0) {
-                        this.pendingTrips.forEach(index => {
-                            if (index.destinationID == i.id) {
-                                index[`alt`] = i.alt;
-                                index[`destination`] = i.destination;
-                                index[`estimatedFlightCostPerPerson`] = i.estimatedFlightCostPerPerson;
-                                index[`estimatedLodgingCostPerDay`] = i.estimatedLodgingCostPerDay;
-                                index[`image`] = i.image;
-                                console.log(index);
-                            }
-                        })
+                        this.reformatTripData(`pendingTrips`, i)
                     }
                     if (this.futureTrips.length > 0) {
-                        this.futureTrips.forEach(index => {
-                            if (index.destinationID == i.id) {
-                                index[`alt`] = i.alt;
-                                index[`destination`] = i.destination;
-                                index[`estimatedFlightCostPerPerson`] = i.estimatedFlightCostPerPerson;
-                                index[`estimatedLodgingCostPerDay`] = i.estimatedLodgingCostPerDay;
-                                index[`image`] = i.image;
-                                console.log(index);
-                            }
-                        })
+                        this.reformatTripData(`futureTrips`, i)
                     }
                 })
+                return this;
             })
+        }
         )
         return theFetch;
     }
 
-    // getDestinationData() {
-    //     traveler.getTripData();
-    //     console.log(traveler.pastTrips);
-    //     return 
-    // }
+    reformatTripData(tripKey, i) {
+        this[tripKey].forEach(index => {
+            if (index.destinationID == i.id) {
+                index[`alt`] = i.alt;
+                index[`destination`] = i.destination;
+                index[`estimatedFlightCostPerPerson`] = i.estimatedFlightCostPerPerson;
+                index[`estimatedLodgingCostPerDay`] = i.estimatedLodgingCostPerDay;
+                index[`image`] = i.image;
+            }
+        })
+    }
 }
 
 export default Traveler;
-// if (typeof module !== "undefined") {
-//     module.exports = Traveler;
-// };
