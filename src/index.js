@@ -1,11 +1,14 @@
 import Traveler from './classes/Traveler';
 
-
 import './css/base.scss';
-
 
 import './images/user.png';
 
+let login = document.querySelector('.Login');
+let userName = document.querySelector('.UserName');
+let password = document.querySelector('.Password');
+let credsButton = document.querySelector('.Check-Credentials');
+let loginResult = document.querySelector('.Login-Button-Result')
 
 let greeting = document.querySelector('.Greeting');
 let expenses = document.querySelector('.YTD-Expenses');
@@ -28,15 +31,26 @@ let pendingHeader = document.querySelector('.Pending-Header');
 
 let traveler;
 
-
-window.onload = () => {
-    // createClasses();
-    traveler = new Traveler(7);
-    getDataAndShowDom();
-};
+credsButton.addEventListener('click', checkCredsFunction)
 checkDetails.addEventListener('click', checkDetailsFunction);
 bookButton.addEventListener('click', bookTrip);
 
+function checkCredsFunction() {
+    console.log('Hello')
+    if (userName.value.includes('traveler') && password.value == 'travel2020') {
+        console.log(userName.value);
+        createClasses();
+        getDataAndShowDom();
+        login.style.display = 'none';
+    } else {
+        console.log(userName.value);
+        loginResult.innerHTML = "Sorry, invalid username or password"
+    }
+}
+
+function createClasses() {
+    traveler = new Traveler(userName.value.slice(-2));
+}
 
 function getDataAndShowDom() {
     Promise.all([
@@ -47,10 +61,6 @@ function getDataAndShowDom() {
         domInfo();
     })
 }
-
-// function createClasses() {
-//     traveler = new Traveler(7);
-// }
 
 function domInfo() {
     greeting.innerHTML = `Welcome back, ${traveler.firstName} the ${traveler.travelerType}!`;
