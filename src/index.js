@@ -2,6 +2,7 @@ import Traveler from './classes/Traveler';
 
 import './css/base.scss';
 import './css/welcome.scss';
+import './css/header.scss';
 
 import './images/user.png';
 
