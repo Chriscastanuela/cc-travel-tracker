@@ -167,8 +167,8 @@ function bookTrip() {
         fetch(`https://fe-apps.herokuapp.com/api/v1/travel-tracker/data/trips/trips`, thePost)
         .then(response => {
             getDataAndShowDom();
-            location.reload();
-            return false;
+            // location.reload();
+            // return false;
         }
         );
     };
