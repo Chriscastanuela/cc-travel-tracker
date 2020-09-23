@@ -1,6 +1,8 @@
 import Traveler from './classes/Traveler';
 
 import './css/base.scss';
+import './css/welcome.scss';
+import './css/variables.scss';
 
 import './images/user.png';
 
