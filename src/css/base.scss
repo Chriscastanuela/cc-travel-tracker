@@ -33,7 +33,9 @@ $primary-background: rgb(255, 255, 255);
 }
 
 @mixin bookTrip {
-  margin: 10px;
+  // margin: 10px;
+  margin-top: 45px;
+  margin-left: 20px;
   border-style: solid;
   border-width: 1px;
   border-radius: 75px;
@@ -73,7 +75,8 @@ $primary-background: rgb(255, 255, 255);
   font-family: 'Open Sans', sans-serif;
   width: 150px;
 }
-    // <-------------------------------------------->Traveler
+
+// <-------------------------------------------->Traveler
 
 // <------------------------------> Wrapper
 

@@ -2,7 +2,6 @@ import Traveler from './classes/Traveler';
 
 import './css/base.scss';
 import './css/welcome.scss';
-import './css/variables.scss';
 
 import './images/user.png';
 
@@ -33,9 +32,12 @@ let pendingHeader = document.querySelector('.Pending-Header');
 
 let traveler;
 
-credsButton.addEventListener('click', checkCredsFunction)
+
+credsButton.addEventListener('click', checkCredsFunction);
 checkDetails.addEventListener('click', checkDetailsFunction);
 bookButton.addEventListener('click', bookTrip);
+
+
 
 function checkCredsFunction() {
     console.log('Hello')
