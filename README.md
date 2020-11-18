@@ -2,7 +2,7 @@
 # Travel Tracker
 A project by Christopher Castanuela
 
-[Link to Deployed Site](https://chriscastanuela.github.io/cc-travel-tracker/)
+## [Link to Deployed Site](https://chriscastanuela.github.io/cc-travel-tracker/)
 * Username: "traveler" plus any number between 01 and 50 (ex: traveler49)
 * Password: travel2020
 
