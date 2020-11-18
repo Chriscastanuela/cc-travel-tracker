@@ -17,7 +17,7 @@ A project by Christopher Castanuela
 
 [Back to Main](#mainContents)
 <ul>
-    <li>The "Travel Tracker" project is a project that allows a travel agency customer to log in to the agency's website, manage their trips, and book a trip</li>
+    <li>The "Travel Tracker" project includes making a website that allows a travel agency customer to log in to the agency's website, manage their trips, and book a trip</li>
 </ul>
 
 ### What I Enjoyed The Most
