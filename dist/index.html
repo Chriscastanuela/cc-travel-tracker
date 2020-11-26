@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>Webpack Starter Kit</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;1,300&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+    </style>
+  </head>
+  <body class="Body">
+    <div class="Login" aria-label="Login">
+      <h1 class="Login-Welcome">Welcome</h1>
+      <input type="text" class="UserName" placeholder="Username">
+      <input type="text" class="Password" placeholder="Password">
+      <button class="Check-Credentials">Check Credentials</button>
+      <p class="Login-Button-Result"></p>
+    </div>
+      <section class="Traveler-Wrapper">
+        <section class="Traveler-Header">
+          <div>
+            <h1 class="Company-Name">TravelCo.</h1>
+            <p class="Greeting"></p>
+          </div>
+          <div class="Icon-and-Name">
+            <img class='UserIcon' width=50px height=50px src="./images/user.png" alt="User Icon">
+            <p class="User-Full-Name"></p>
+            <p class="YTD-Expenses"></p>
+          </div>
+        </section>
+        <section class="Traveler-Main">
+          <div class="Traveler-Main-Left">
+            <p class="Expenses"></p>
+            <div class="Book-Trip">
+              <h1 class="BTHeader">Book a Trip!</h1>
+              <input aria-label="DateInput" class="DateInput" min="2020-09-26" type="date" name="Date" id="Date" placeholder="Date">
+              <input aria-label="DurationInput" class="DurationInput" type="number" name="Duration" id="Duration" placeholder="Duration" min="0">
+              <input aria-label="TravelersInput" class="TravelersInput" type="number" name="Num-Of-Travelers" id="Num-Of-Travelers" placeholder="Travelers" min="0">
+              <select aria-label="DestinationInput" class="DestinationInput" name="Destination" id="Destination">
+                <!---->
+              </select>
+              <button class="Check-Details">Check Details</button>
+              <p class="Ready-Status"></p>
+              <p class="Trip-Total"></p>
+              <button class="Book-Button" hidden>Book It!</button>
+            </div>
+          </div>
+          <div class="Traveler-Main-Right">
+            <section class="TripsSection">
+              <div class="Past-And-Your-Trips">
+                <h1 class="Your-Trip-Header">Your Trips</h1>
+                <div class="Past">
+                  <h1 class="Past-Header">Past</h1>
+                </div>
+              </div>
+                <div class="Present">
+                  <h1 class="Present-Header">Present</h1>
+                </div>
+                <div class="Upcoming">
+                  <h1 class="Upcoming-Header">Upcoming</h1>
+                </div>
+                <div class="Pending">
+                  <h1 class="Pending-Header">Pending</h1>
+                </div>
+            </section>
+          </div>
+        </section>
+        <section class="Traveler-Footer"></section>
+      </section>
+  <script type="text/javascript" src="main.bundle.js"></script></body>
+</html>
